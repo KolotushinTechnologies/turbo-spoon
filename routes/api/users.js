@@ -12,6 +12,7 @@ const {
   registration,
   login,
   getMyProfile,
+  mySettings,
   getMyBasket,
   addProductCardToMyBasket,
   removeProductCardToMyBasket,
@@ -47,6 +48,11 @@ router.post(
 // @desc     Get user by token(Get My Profile)
 // @access   Private
 router.get("/", auth, getMyProfile);
+
+// @route    PUT http://localhost:5000/api/users/settings
+// @desc     User settings
+// @access   Private
+router.put("/settings", auth, mySettings);
 
 // @route    GET http://localhost:5000/api/users/my-basket
 // @desc     Get my basket

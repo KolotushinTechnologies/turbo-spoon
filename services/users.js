@@ -138,6 +138,62 @@ const getMyProfile = async (req, res) => {
   }
 };
 
+// @route    PUT http://localhost:5000/api/users/settings
+// @desc     User settings
+// @access   Private
+const mySettings = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const user = await User.findOne({ _id: userId });
+
+    if (!user) {
+      return res.status(404).json({
+        statusCode: 404,
+        stringStatus: "Not Found",
+        message: "User Not Found!"
+      });
+    }
+
+    const { login, fullName, email, phoneNumber, address, password } = req.body;
+
+    if (login) {
+      user.login = login;
+    }
+
+    if (fullName) {
+      user.fullName = fullName;
+    }
+
+    if (email) {
+      user.email = email;
+    }
+
+    if (phoneNumber) {
+      user.phoneNumber = phoneNumber;
+    }
+
+    if (address) {
+      user.address = address;
+    }
+
+    if (password) {
+      const salt = await bcrypt.genSalt(10);
+
+      user.password = await bcrypt.hash(password, salt);
+    }
+
+    user.save();
+
+    const updatedUser = await User.findOne({ _id: userId });
+
+    return res.status(200).json(updatedUser);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+};
+
 // @route    GET http://localhost:5000/api/users/my-basket
 // @desc     Get my basket
 // @access   Private
@@ -207,7 +263,7 @@ const addProductCardToMyBasket = async (req, res) => {
 
     await user.save();
 
-    return res.status(200).json(user.basket);
+    return res.status(200).json(user);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -257,7 +313,7 @@ const removeProductCardToMyBasket = async (req, res) => {
 
     user.save();
 
-    return res.status(200).json(user.basket);
+    return res.status(200).json(user);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -374,7 +430,7 @@ const addProductCardToMyFavorites = async (req, res) => {
 
     await user.save();
 
-    return res.status(200).json(user.favorites);
+    return res.status(200).json(user);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -424,7 +480,7 @@ const removeProductCardToMyFavorites = async (req, res) => {
 
     user.save();
 
-    return res.status(200).json(user.favorites);
+    return res.status(200).json(user);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -435,6 +491,7 @@ module.exports = {
   registration,
   login,
   getMyProfile,
+  mySettings,
   getMyBasket,
   addProductCardToMyBasket,
   removeProductCardToMyBasket,
