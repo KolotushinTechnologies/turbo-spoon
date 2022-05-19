@@ -1,0 +1,251 @@
+.profileInfo {
+    margin: 32px 40px 54px;
+    padding: 32px;
+    background: #0C0C0C;
+    border-radius: 24px;
+    display: flex;
+    color: #ffffff;
+}
+
+.profileImage {
+    width: 228px;
+    height: 228px;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+.donloadImgBg {
+    width: 228px;
+    height: 228px;
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.profileImageDiv {
+    width: 228px;
+    height: 228px;
+}
+
+.profileImageDiv>input {
+    width: 228px;
+    height: 228px;
+    opacity: 0;
+    position: absolute;
+    margin-left: -228px;
+    z-index: 1000;
+}
+
+.profileInfoContent {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    width: 100%;
+}
+
+.nameAndButtonsDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nameAndRoleDiv {
+    display: flex;
+    align-items: center;
+}
+
+.editExitButtonsDiv {
+    display: flex;
+    align-items: center;
+}
+
+.profileNameText {
+    font-size: 36px;
+    line-height: 44px;
+    color: #0C0C0C;
+}
+
+.profileRoleText {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    color: #a4a4a4;
+    margin-left: 24px;
+}
+
+.editButton,
+.exitButton {
+    cursor: pointer;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    background: transparent;
+    border-width: 0;
+    padding: 0;
+}
+
+.editButton {
+    color: #5282c3;
+    margin-right: 23px;
+}
+
+.exitButton {
+    color: #a4a4a4;
+    margin-right: 17px;
+}
+
+.profileLogin {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    color: #a4a4a4;
+}
+
+.moreDetailsText {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #5282c3;
+    display: none;
+    height: 24px;
+}
+
+.moreDetailsText[isseller="true"] {
+    display: none;
+}
+
+.moreDetailsText>img {
+    width: 4px;
+    height: 8px;
+    margin-left: 8px;
+    transform: rotate(-90deg);
+}
+
+.moreDetailsText[active="true"]>img {
+    transform: matrix(0, 1, 1, 0, 0, 0);
+}
+
+.whatWeMakeEditButton {
+    position: absolute;
+    right: 93px;
+    margin: 40px 0 0;
+}
+
+@media (max-width: 700px) {
+    input.profileNameText {
+        text-align: center;
+    }
+
+    .moreDetailsText {
+        display: initial;
+    }
+
+    .profileInfoContent {
+        margin-left: 12px;
+    }
+
+    .profileInfo {
+        margin: 76px 16px 32px;
+        padding: 0;
+        background: white;
+    }
+
+    .profileLogin {
+        margin: 0;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .profileImage,
+    .profileImageDiv,
+    .donloadImgBg,
+    .profileImageDiv>input {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profileImageDiv>input {
+        margin-left: -120px;
+    }
+
+    .donloadImgBg {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .profileNameText {
+        font-size: 24px;
+        line-height: 24px;
+    }
+
+    .nameAndButtonsDiv {
+        align-items: flex-start;
+    }
+
+    .nameAndRoleDiv {
+        position: absolute;
+        top: 140px;
+        left: 16px;
+        right: 16px;
+        justify-content: center;
+    }
+
+    .editExitButtonsDiv {
+        position: absolute;
+        right: 15px;
+        margin-top: 100px;
+    }
+
+    .moreDetailsText {
+        position: absolute;
+        margin-top: 96px;
+    }
+
+    .profileRoleText {
+        display: none;
+    }
+
+    .editButton,
+    .exitButton {
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    .editButton {
+        margin-right: 8px;
+    }
+
+    .exitButton {
+        margin-right: 0;
+    }
+
+
+
+    .whatWeMakeEditButton {
+        right: 31px;
+        margin: 25px 0 0;
+    }
+
+    .profileInfo[active="true"] {
+        height: 377px;
+    }
+
+    .profileInfo[active="true"].displayEditProfile {
+        height: 443px;
+    }
+}

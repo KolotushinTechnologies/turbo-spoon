@@ -145,7 +145,7 @@ const mySettings = async (req, res) => {
   try {
     const userId = req.user.id;
 
-    const user = await User.findOne({ _id: userId });
+    const user = await UserModel.findOne({ _id: userId });
 
     if (!user) {
       return res.status(404).json({
@@ -185,7 +185,7 @@ const mySettings = async (req, res) => {
 
     user.save();
 
-    const updatedUser = await User.findOne({ _id: userId });
+    const updatedUser = await UserModel.findOne({ _id: userId });
 
     return res.status(200).json(updatedUser);
   } catch (err) {

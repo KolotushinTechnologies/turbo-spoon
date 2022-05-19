@@ -19,8 +19,8 @@ const UserSchema = new Schema(
         },
         nameProduct: { type: String, required: true },
         photo: { type: String },
-        price: { type: String },
-        countProducts: { type: Number }
+        price: Number,
+        countProducts: Number
       }
     ],
     favorites: [
@@ -32,15 +32,15 @@ const UserSchema = new Schema(
         },
         nameProduct: { type: String, required: true },
         photo: { type: String },
-        price: { type: String }
+        price: Number
       }
     ],
     orders: [
       {
         nameOrder: { type: String, required: true },
         products: [{ type: Schema.Types.ObjectId, ref: "ProductCard" }],
-        price: { type: String },
-        countProducts: { type: Number }
+        price: Number,
+        countProducts: Number
       }
     ],
     roles: [{ type: String, ref: "Role" }]

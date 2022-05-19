@@ -1,16 +1,16 @@
 const ProductCardModel = require("../models/ProductCard");
 const UserModel = require("../models/User");
 
-// @route    POST http://localhost:5000/api/product-cards/create?nameProduct=name&price=price&compound=compound&description=description&category=category
+// @route    POST http://localhost:5000/api/product-cards/create?nameProduct=name&compound=compound&description=description&category=category
 // @desc     Create New Product Card
 // @access   Public
 const createNewProductCard = async (req, res) => {
   try {
-    const { nameProduct, price, compound, description, category } = req.query;
+    const { nameProduct, compound, description, category } = req.query;
 
     const newProductCard = await ProductCardModel.create({
       nameProduct: nameProduct,
-      price: price,
+      price: req.body.price,
       compound: compound,
       description: description,
       category: category

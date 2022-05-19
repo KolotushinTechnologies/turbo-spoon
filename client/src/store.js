@@ -1,4 +1,4 @@
-import { applyMiddleware, legacy_createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
@@ -8,7 +8,7 @@ const initialState = {};
 
 const middleware = [thunk];
 
-const store = legacy_createStore(
+const store = createStore(
   rootReducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
@@ -30,8 +30,8 @@ store.subscribe(() => {
   let previousState = currentState;
   currentState = store.getState();
   // if the token changes set the value in localStorage and axios headers
-  if (previousState.auth.token !== currentState.auth.token) {
-    const token = currentState.auth.token;
+  if (previousState.userWork.token !== currentState.userWork.token) {
+    const token = currentState.userWork.token;
     setAuthToken(token);
   }
 });

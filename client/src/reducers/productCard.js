@@ -15,6 +15,7 @@ const initialState = {
 
 function productCardReducer(state = initialState, action) {
   const { type, payload } = action;
+  console.log(payload);
 
   switch (type) {
     case GET_PRODUCT:
@@ -42,6 +43,8 @@ function productCardReducer(state = initialState, action) {
         ...state,
         product: null
       };
+    default:
+      return state;
   }
 }
 

@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const ProductCardSchema = new Schema(
   {
     nameProduct: { type: String, required: true },
-    price: { tyep: String },
+    price: Number,
     photo: { type: String },
     compound: { type: String },
     description: { type: String },
@@ -13,7 +13,8 @@ const ProductCardSchema = new Schema(
         user: { type: Schema.Types.ObjectId },
         name: { type: String },
         text: { type: String, required: true },
-        avatar: { type: String }
+        avatar: { type: String },
+        date: { type: Date, default: Date.now }
       }
     ]
   },

@@ -1,4 +1,6 @@
 import api from "../utils/api";
+import axios from "axios";
+import { setAlert } from "./alert";
 import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT,
@@ -12,10 +14,12 @@ import {
 // @desc     Get all product cards
 // @access   Public
 export const getAllProductCards = () => async (dispatch) => {
-  dispatch({ CLEAR_PRODUCT });
+  dispatch({ type: CLEAR_PRODUCT });
 
   try {
     const res = await api.get("/product-cards/all");
+    // const res = await axios.get("http://localhost:5000/api/product-cards/all");
+    // console.log(res);
 
     dispatch({
       type: GET_ALL_PRODUCTS,
@@ -52,11 +56,11 @@ export const getProductCardById = (productCardId) => async (dispatch) => {
 // @desc     Create review for product card
 // @access   Private
 export const createReviewForProductCard =
-  (formData, productCardId) => async (dispatch) => {
+  (text, productCardId) => async (dispatch) => {
     try {
       const res = await api.post(
-        `/product-cards/create-review${productCardId}`,
-        formData
+        `/product-cards/create-review/${productCardId}`,
+        { text }
       );
 
       dispatch({

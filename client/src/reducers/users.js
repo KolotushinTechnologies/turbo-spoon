@@ -20,8 +20,8 @@ const initialState = {
   isAuthenticated: null,
   loading: true,
   user: null,
-  basket: null,
-  favorites: null,
+  basket: [],
+  favorites: [],
   //   orders: null,
   error: {}
 };

@@ -1,6 +1,5 @@
-import { getMyProfile } from "../../../services/users";
 import api from "../utils/api";
-import setAlert from "./alert";
+import { setAlert } from "./alert";
 import {
   REGISTRATION_SUCCESS,
   REGISTRATION_FAIL,
@@ -52,7 +51,7 @@ export const registration = (formData) => async (dispatch) => {
       payload: res.data
     });
 
-    dispatch(getMyProfile());
+    dispatch(getMyUserProfile());
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -70,7 +69,7 @@ export const registration = (formData) => async (dispatch) => {
 // @route    POST http://localhost:5000/api/users/login
 // @desc     Authenticate user & get token(Login User)
 // @access   Public
-export const login = (login, password) => async (dispatch) => {
+export const loginUser = (login, password) => async (dispatch) => {
   try {
     const res = await api.post("/users/login", { login, password });
 
@@ -79,7 +78,7 @@ export const login = (login, password) => async (dispatch) => {
       payload: res.data
     });
 
-    dispatch(getMyProfile());
+    dispatch(getMyUserProfile());
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -108,7 +107,7 @@ export const updateMyProfile = (formData, navigate) => async (dispatch) => {
       type: UPDATE_MY_PROFILE,
       payload: res.data
     });
-
+    dispatch(getMyUserProfile());
     dispatch(setAlert("Ваш Профиль Обновлен!", "success"));
 
     navigate("/dashboard");
@@ -183,7 +182,7 @@ export const addProductCardToMyBasket =
 export const removeProductCardToMyBasket =
   (productCardId, navigate) => async (dispatch) => {
     try {
-      const res = await api.post(
+      const res = await api.put(
         `/users/remove-product-to-basket/${productCardId}`
       );
 
@@ -274,7 +273,7 @@ export const addProductCardToMyFavorites =
 
       dispatch(setAlert("Товар Был Добавлен Вам В Избранное!", "success"));
 
-      navigate("/my-basket");
+      navigate("/dashboard");
     } catch (err) {
       const errors = err.response.data.errors;
 
@@ -294,7 +293,7 @@ export const addProductCardToMyFavorites =
 export const removeProductCardToMyFavorites =
   (productCardId, navigate) => async (dispatch) => {
     try {
-      const res = await api.post(
+      const res = await api.put(
         `/users/remove-product-to-favorites/${productCardId}`
       );
 

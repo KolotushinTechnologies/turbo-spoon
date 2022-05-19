@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const connectDB = require("./config/db");
 const path = require("path");
 
@@ -15,6 +16,7 @@ const productCardsRoute = require("./routes/api/productCards");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(cors());
 
 // Dedine Routes
 app.use("/api/users", usersRoute);

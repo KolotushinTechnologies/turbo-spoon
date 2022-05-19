@@ -1,0 +1,386 @@
+.regFieldsBlock {
+    display: flex;
+}
+
+.regLeftBlock,
+.regRightBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.regRightBlock {
+    margin-left: 72px;
+}
+
+.checkBoxDiv {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.checkBoxDiv>input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    outline: none;
+    border: 2px solid #5282c3;
+    border-radius: 25%;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 75% 75%;
+}
+
+.checkBoxDiv>input:checked {
+    border-color: #0b76ef;
+    background-color: #0b76ef;
+    /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e"); */
+}
+
+.checkBoxDiv>span {
+    margin-left: 8px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 12px;
+    color: #000000;
+}
+
+.regBirthDaySelectDiv {
+    margin-top: 8px;
+    display: flex;
+    width: 353px;
+    height: 32px;
+    justify-content: space-between;
+    box-sizing: initial;
+    border-radius: 16px;
+}
+
+.regBirthDayError {
+    width: 355px;
+}
+
+.birthdaySelect {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    /* line-height: 12px; */
+    color: #000000;
+    text-align: center;
+}
+
+.birthdaySelectMonth {
+    width: 44%;
+}
+
+.birthdaySelectDay {
+    width: 24%;
+}
+
+.birthdaySelectYear {
+    width: 28%;
+}
+
+.regLocSelect[opened="true"] {
+    border-radius: 16px 16px 0 0;
+    /* background-image: url("../../../img1/reverseSelectArrow.png"); */
+}
+
+.phoneFieldDiv {
+    margin-top: 8px;
+    width: 353px;
+    height: 32px;
+    display: flex;
+}
+
+.phoneMask {
+    margin-top: 0;
+    padding: 0 5px;
+    text-align: center;
+    min-width: 32px;
+    width: auto;
+}
+
+.phoneNum {
+    margin-top: 0;
+    /* width: 100%; */
+    margin-left: 8px;
+}
+
+.regDownloadImageInput {
+    display: none;
+}
+
+.regDownloadImageDiv {
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.regDownloadImageBG {
+    box-sizing: border-box;
+    width: 353px;
+    height: 32px;
+    background: #c0cfe5;
+    border-radius: 16px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    color: #5282c3;
+    padding: 4px 16px;
+}
+
+.regShowPassword {
+    margin-left: -40px;
+    margin-bottom: -3px;
+    width: 24px;
+    height: 16px;
+}
+
+.regLeftBlock>.authField:nth-child(1) {
+    margin-top: 16px;
+}
+
+.regLeftBlock>.authField:nth-child(2) {
+    margin-top: 16px;
+}
+
+.regLeftBlock>.authField:nth-child(3) {
+    margin-top: 48px;
+}
+
+.regLeftBlock>.authField:nth-child(4) {
+    /* margin-top: 48px; */
+    display: flex;
+    text-align: center;
+}
+
+/* .regLeftBlock > .authField:nth-child(5) {
+  margin-top: 48px;
+  margin-bottom: 32px;
+} */
+
+.regLeftBlock[iAmSeller="true"]>.authField:nth-child(1) {
+    margin-top: 16px;
+}
+
+.regLeftBlock[iAmSeller="true"]>.authField:nth-child(2) {
+    margin-top: 32px;
+}
+
+.regLeftBlock[iAmSeller="true"]>.authField:nth-child(3) {
+    margin-top: 48px;
+}
+
+.regLeftBlock[iAmSeller="true"]>.authField:nth-child(4) {
+    margin-top: 48px;
+}
+
+.regLeftBlock[iAmSeller="true"]>.authField:nth-child(5) {
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.regRightBlock>.authField:nth-child(1) {
+    margin-top: 0;
+}
+
+.regRightBlock>.authField:nth-child(2) {
+    margin-top: 32px;
+}
+
+.regRightBlock>.authField:nth-child(3) {
+    margin-top: 48px;
+}
+
+.regRightBlock>.authField:nth-child(4) {
+    margin-top: 48px;
+}
+
+.regRightBlock[iAmSeller="true"]>.authField:nth-child(1) {
+    margin-top: 16px;
+}
+
+.regRightBlock[iAmSeller="true"]>.authField:nth-child(2) {
+    margin-top: 48px;
+}
+
+.regRightBlock[iAmSeller="true"]>.authField:nth-child(3) {
+    margin-top: 32px;
+}
+
+.regRightBlock[iAmSeller="true"]>.authField:nth-child(4) {
+    margin-top: 48px;
+}
+
+.regRightBlock[iAmSeller="true"]>.authField:nth-child(5) {
+    margin-top: 50px;
+}
+
+
+.datalistOfCountries {
+    width: 353px;
+    max-width: 90%;
+    position: absolute;
+    max-height: 30vh;
+    overflow-y: scroll;
+    background-color: white;
+    z-index: 100;
+    cursor: default;
+    padding-top: 10px;
+}
+
+.datalistOfCountries::-webkit-scrollbar {
+    width: 5px;
+}
+
+.datalistOfCountries::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+.datalistOfCountries::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border-radius: 16px;
+}
+
+.datalistSelect {
+    width: 99%;
+    min-height: 30px;
+    display: flex;
+    justify-content: space-between;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    margin-left: 1%;
+}
+
+.countriesSelectArrow {
+    height: 7.5px;
+    width: 15px;
+    margin-right: 10px;
+}
+
+.countryTextButton {
+    padding: 0;
+    border-width: 0;
+    background-color: transparent;
+}
+
+
+@media (max-width: 700px) {
+    .regBirthDayError {
+        width: auto;
+        right: 37px;
+        left: 37px;
+    }
+
+    .datalistOfCountries {
+        width: auto;
+        right: 37px;
+        left: 37px;
+    }
+
+    .regFieldsBlock {
+        flex-direction: column;
+    }
+
+    .regRightBlock {
+        margin-left: 0;
+    }
+
+    .regBirthDaySelectDiv,
+    .regDownloadImageBG,
+    .regDownloadImageDiv,
+    .phoneFieldDiv {
+        width: 100%;
+    }
+
+    .phoneMask {
+        width: auto;
+    }
+
+    .regLeftBlock>.authField:nth-child(1) {
+        margin-top: 0;
+    }
+
+    .regLeftBlock>.authField:nth-child(2) {
+        margin-top: 24px;
+    }
+
+    .regLeftBlock>.authField:nth-child(3) {
+        margin-top: 24px;
+    }
+
+    .regLeftBlock>.authField:nth-child(4) {
+        margin-top: 24px;
+    }
+
+    .regLeftBlock>.authField:nth-child(5) {
+        margin-top: 16px;
+        margin-bottom: 0;
+    }
+
+    .regLeftBlock[iAmSeller="true"]>.authField:nth-child(1) {
+        margin-top: 0;
+    }
+
+    .regLeftBlock[iAmSeller="true"]>.authField:nth-child(2) {
+        margin-top: 16px;
+    }
+
+    .regLeftBlock[iAmSeller="true"]>.authField:nth-child(3) {
+        margin-top: 24px;
+    }
+
+    .regLeftBlock[iAmSeller="true"]>.authField:nth-child(4) {
+        margin-top: 24px;
+    }
+
+    .regLeftBlock[iAmSeller="true"]>.authField:nth-child(5) {
+        margin-top: 92px;
+        margin-bottom: 0;
+    }
+
+    .regRightBlock>.authField:nth-child(1) {
+        margin-top: 16px;
+    }
+
+    .regRightBlock>.authField:nth-child(2) {
+        margin-top: 16px;
+    }
+
+    .regRightBlock>.authField:nth-child(3) {
+        margin-top: 24px;
+    }
+
+    .regRightBlock>.authField:nth-child(4) {
+        margin-top: 16px;
+    }
+
+    .regRightBlock[iAmSeller="true"]>.authField:nth-child(1) {
+        margin-top: -136px;
+    }
+
+    .regRightBlock[iAmSeller="true"]>.authField:nth-child(2) {
+        margin-top: 100px;
+    }
+
+    .regRightBlock[iAmSeller="true"]>.authField:nth-child(3) {
+        margin-top: 16px;
+    }
+
+    .regRightBlock[iAmSeller="true"]>.authField:nth-child(4) {
+        margin-top: 24px;
+    }
+
+    .regRightBlock[iAmSeller="true"]>.authField:nth-child(5) {
+        margin-top: 16px;
+    }
+}
