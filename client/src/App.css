@@ -1,3 +1,6 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 /* Global Styles */
 :root {
   --primary-color: #17a2b8;
@@ -32,6 +35,22 @@ ul {
 
 img {
   width: 100%;
+}
+
+.slick-slider {
+  max-width: 1100px;
+}
+
+.slick-slide div {
+  margin: 10px !important;
+}
+
+.slick-slid {
+  margin: 10px !important;
+}
+
+.slick-track {
+  left: -10px !important;
 }
 
 /* Utilities */

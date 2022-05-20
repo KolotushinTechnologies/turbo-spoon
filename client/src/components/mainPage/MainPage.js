@@ -14,8 +14,8 @@ import {
 // Import Components
 import Auth from "../auth/Auth";
 import Products from "../products/Products";
-
-import Carousel from "../Carousel/Carousel";
+// import Carousel from "../Carousel/Carousel";
+// import Slider from "react-slick";
 
 // Import Styles
 import ArrowImage from "../../img/arrow.png";
@@ -44,6 +44,14 @@ function MainPage({
 
   console.log(products);
 
+  //   const settings = {
+  //     dots: true,
+  //     infinite: true,
+  //     speed: 500,
+  //     slidesToShow: 1,
+  //     slidesToScroll: 10
+  //   };
+
   return (
     <Fragment>
       <section className="section-main">
@@ -61,21 +69,21 @@ function MainPage({
 
         {/* <div className="contr_slider">
         <div className="slider"> */}
-        <Carousel>
-          <Products
-            user={user}
-            getAllProductCards={getAllProductCards}
-            products={products}
-            isAuthenticated={isAuthenticated}
-            addProductCardToMyBasket={addProductCardToMyBasket}
-            addProductCardToMyFavorites={addProductCardToMyFavorites}
-            removeProductCardToMyBasket={removeProductCardToMyBasket}
-            removeProductCardToMyFavorites={removeProductCardToMyFavorites}
-            navigate={navigate}
-            loading={loading}
-            setModalActive={setModalActive}
-          />
-        </Carousel>
+        {/* <Carousel> */}
+        <Products
+          user={user}
+          getAllProductCards={getAllProductCards}
+          products={products}
+          isAuthenticated={isAuthenticated}
+          addProductCardToMyBasket={addProductCardToMyBasket}
+          addProductCardToMyFavorites={addProductCardToMyFavorites}
+          removeProductCardToMyBasket={removeProductCardToMyBasket}
+          removeProductCardToMyFavorites={removeProductCardToMyFavorites}
+          navigate={navigate}
+          loading={loading}
+          setModalActive={setModalActive}
+        />
+        {/* </Carousel> */}
 
         {/* Registration And Authorization */}
         <Auth
