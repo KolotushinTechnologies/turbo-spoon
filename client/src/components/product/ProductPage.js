@@ -20,6 +20,7 @@ import ReviewForm from "./ReviewForm";
 import ReviewItem from "./ReviewItem";
 
 // Import Styles
+import "./ProductPage.css";
 import Spinner from "../layout/Spinner";
 
 const ProductPage = ({
@@ -49,35 +50,44 @@ const ProductPage = ({
         <Spinner />
       ) : (
         <Fragment>
-          <Product
-            product={product}
-            isAuthenticated={isAuthenticated}
-            user={user}
-            createReviewForProductCard={createReviewForProductCard}
-            addProductCardToMyBasket={addProductCardToMyBasket}
-            removeProductCardToMyBasket={removeProductCardToMyBasket}
-            addProductCardToMyFavorites={addProductCardToMyFavorites}
-            removeProductCardToMyFavorites={removeProductCardToMyFavorites}
-            navigate={navigate}
-            modalActive={modalActive}
-            setModalActive={setModalActive}
-            loginStatus={loginStatus}
-            setLoginStatus={setLoginStatus}
-          />
-          <h1>Оставьте Отзыв!</h1>
-          {isAuthenticated ? (
-            <ReviewForm id={id} />
-          ) : (
-            <h1>Войдите в аккаунт, чтобы оставить отзыв</h1>
-          )}
-
-          {product?.reviews?.length > 0 ? (
-            product.reviews.map((review) => (
-              <ReviewItem key={review._id} review={review} />
-            ))
-          ) : (
-            <h3>Отзывов Еще Нет!</h3>
-          )}
+          <section className="main-page__product">
+            <div className="first-section__page-product">
+              <Product
+                product={product}
+                isAuthenticated={isAuthenticated}
+                user={user}
+                createReviewForProductCard={createReviewForProductCard}
+                addProductCardToMyBasket={addProductCardToMyBasket}
+                removeProductCardToMyBasket={removeProductCardToMyBasket}
+                addProductCardToMyFavorites={addProductCardToMyFavorites}
+                removeProductCardToMyFavorites={removeProductCardToMyFavorites}
+                navigate={navigate}
+                modalActive={modalActive}
+                setModalActive={setModalActive}
+                loginStatus={loginStatus}
+                setLoginStatus={setLoginStatus}
+              />
+            </div>
+            <div className="second-section__page-product">
+              <div className="form-review__section">
+                <h2>Отзывы</h2>
+                {isAuthenticated ? (
+                  <ReviewForm id={id} />
+                ) : (
+                  <h1>Войдите в аккаунт, чтобы оставить отзыв</h1>
+                )}
+              </div>
+              <div className="list-review__section">
+                {product?.reviews?.length > 0 ? (
+                  product.reviews.map((review) => (
+                    <ReviewItem key={review._id} review={review} />
+                  ))
+                ) : (
+                  <h3>Отзывов Еще Нет!</h3>
+                )}
+              </div>
+            </div>
+          </section>
         </Fragment>
       )}
     </Fragment>

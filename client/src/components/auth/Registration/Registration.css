@@ -6,6 +6,7 @@
 .regRightBlock {
     display: flex;
     flex-direction: column;
+    padding: 30px;
 }
 
 .regRightBlock {
@@ -93,7 +94,7 @@
 
 .phoneFieldDiv {
     margin-top: 8px;
-    width: 353px;
+    /* width: 353px; */
     height: 32px;
     display: flex;
 }
@@ -152,13 +153,14 @@
 }
 
 .regLeftBlock>.authField:nth-child(3) {
-    margin-top: 48px;
+    /* margin-top: 48px; */
 }
 
 .regLeftBlock>.authField:nth-child(4) {
     /* margin-top: 48px; */
     display: flex;
-    text-align: center;
+    flex-direction: column;
+    /* text-align: center; */
 }
 
 /* .regLeftBlock > .authField:nth-child(5) {

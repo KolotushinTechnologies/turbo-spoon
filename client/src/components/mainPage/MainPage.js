@@ -63,27 +63,44 @@ function MainPage({
             <img src={ArrowImage} />
           </Link>
         </div>
-        <div className="contr1284">
-          <div className="zagolovok">Популярные товары</div>
+
+        <div className="first-section__main">
+          <div className="contr1284">
+            <h1>Популярные товары</h1>
+          </div>
+          <Products
+            user={user}
+            getAllProductCards={getAllProductCards}
+            products={products}
+            isAuthenticated={isAuthenticated}
+            addProductCardToMyBasket={addProductCardToMyBasket}
+            addProductCardToMyFavorites={addProductCardToMyFavorites}
+            removeProductCardToMyBasket={removeProductCardToMyBasket}
+            removeProductCardToMyFavorites={removeProductCardToMyFavorites}
+            navigate={navigate}
+            loading={loading}
+            setModalActive={setModalActive}
+          />
         </div>
 
-        {/* <div className="contr_slider">
-        <div className="slider"> */}
-        {/* <Carousel> */}
-        <Products
-          user={user}
-          getAllProductCards={getAllProductCards}
-          products={products}
-          isAuthenticated={isAuthenticated}
-          addProductCardToMyBasket={addProductCardToMyBasket}
-          addProductCardToMyFavorites={addProductCardToMyFavorites}
-          removeProductCardToMyBasket={removeProductCardToMyBasket}
-          removeProductCardToMyFavorites={removeProductCardToMyFavorites}
-          navigate={navigate}
-          loading={loading}
-          setModalActive={setModalActive}
-        />
-        {/* </Carousel> */}
+        <div className="second-section__main">
+          <div className="contr1284">
+            <h1>Новинки</h1>
+          </div>
+          <Products
+            user={user}
+            getAllProductCards={getAllProductCards}
+            products={products}
+            isAuthenticated={isAuthenticated}
+            addProductCardToMyBasket={addProductCardToMyBasket}
+            addProductCardToMyFavorites={addProductCardToMyFavorites}
+            removeProductCardToMyBasket={removeProductCardToMyBasket}
+            removeProductCardToMyFavorites={removeProductCardToMyFavorites}
+            navigate={navigate}
+            loading={loading}
+            setModalActive={setModalActive}
+          />
+        </div>
 
         {/* Registration And Authorization */}
         <Auth
@@ -92,8 +109,6 @@ function MainPage({
           loginStatus={loginStatus}
           setLoginStatus={setLoginStatus}
         />
-
-        <div className="zagolovok">Новинки</div>
       </section>
     </Fragment>
   );

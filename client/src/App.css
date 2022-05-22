@@ -17,11 +17,12 @@
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Montserrat Alternates', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: #0C0C0C;
   color: #333;
+  height: 100%;
 }
 
 a {
@@ -29,12 +30,16 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  color: #ffffff;
+}
+
 ul {
   list-style: none;
 }
 
 img {
-  width: 100%;
+  /* width: 100%; */
 }
 
 .slick-slider {
@@ -51,6 +56,10 @@ img {
 
 .slick-track {
   left: -10px !important;
+}
+
+.slick-dots {
+  display: none !important;
 }
 
 /* Utilities */

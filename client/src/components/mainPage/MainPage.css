@@ -17,6 +17,17 @@
     filter: blur(5px);
 }
 
+.first-section__main, .second-section__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.first-section__main .contr1284 {
+    margin: 40px;
+}
+
 .top {
     width: 40px;
     height: 40px;

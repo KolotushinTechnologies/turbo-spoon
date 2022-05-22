@@ -9,7 +9,7 @@ import { logout } from "../../../actions/users";
 import Auth from "../../auth/Auth";
 
 // Import Styles
-import LogoImage from "../../../img/лого.png";
+import MainLogo from "../../../img/MainLogo.png";
 import FavoriteImage from "../../../img/избр1.png";
 import BasketImage from "../../../img/корзина1.png";
 import "./Header.css";
@@ -28,7 +28,7 @@ const Header = ({ userWork: { isAuthenticated, user }, logout }) => {
             <span className="logo">
               {" "}
               <Link to="/" onClick={() => setMainHeader(true)}>
-                <img src={LogoImage} width={"178"} height={"74"} />
+                <img src={MainLogo} width={"178"} height={"74"} />
               </Link>
             </span>
             {/* <!--Навигация для десктопа-->  */}
@@ -63,19 +63,23 @@ const Header = ({ userWork: { isAuthenticated, user }, logout }) => {
                 </li>
                 <li className="menu_item">
                   {isAuthenticated ? (
-                    <Link to="/dashboard" onClick={() => setMainHeader(false)}>
+                    <Link
+                      className="menu_link link"
+                      to="/dashboard"
+                      onClick={() => setMainHeader(false)}
+                    >
                       Личный кабинет
                     </Link>
                   ) : (
-                    <Link
-                      to="/"
+                    <span
+                      className="menu_link link"
                       onClick={() => {
-                        setMainHeader(false);
+                        // setMainHeader(false);
                         setModalActive(true);
                       }}
                     >
                       Личный кабинет
-                    </Link>
+                    </span>
                   )}
                 </li>
               </ul>
@@ -151,7 +155,7 @@ const Header = ({ userWork: { isAuthenticated, user }, logout }) => {
           </nav>
         </div>
       </div>
-      <div className="whiteline"></div>
+      {mainHeader && <div className="whiteline"></div>}
     </header>
   );
 };

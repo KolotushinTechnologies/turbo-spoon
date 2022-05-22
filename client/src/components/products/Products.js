@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 // Import Styles
+import "./ProductsPage.css";
 import ZmeiImage from "../../img/1.png";
 import XoImage from "../../img/хо.png";
 import PlusImage from "../../img/+.png";
 import Spinner from "../layout/Spinner";
+import Balaklava from "../../img/shapka3.png";
 
 const Products = ({
   user,
@@ -26,7 +28,7 @@ const Products = ({
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 2000
   };
   return (
@@ -40,120 +42,128 @@ const Products = ({
               products?.map((item) => {
                 return (
                   <div key={item._id} className="slider__item">
-                    <ul className="  ">
-                      <li className="gogo11">
-                        <Link to="/">{/* <img src={ZmeiImage} /> */}</Link>
-                      </li>
-                      <li className="gogo11 flex33 ">
-                        <Link to={`/product/${item._id}`}>
-                          {item.nameProduct}
+                    <div className="main-section__product">
+                      <div className="first-section__product">
+                        <Link
+                          className="link-avatar__product"
+                          to={`/product/${item._id}`}
+                        >
+                          <img className="avatar__product" src={Balaklava} />
                         </Link>
-                      </li>
-                      <li className="gogo11">
-                        <div className="flex111">
-                          <div className="pravo11">
-                            <Link to="/">{item.price}руб</Link>{" "}
+                      </div>
+                      <div className="second-section__product">
+                        <div className="first-section__add-info">
+                          <div className="add__info">
+                            <div className="name__product">
+                              <span>{item.nameProduct}</span>
+                            </div>
+                            <div className="price__product">
+                              <span>{item.price}руб.</span>
+                            </div>
                           </div>
-                          {isAuthenticated ? (
-                            <Fragment>
-                              <div className="flex222">
-                                {" "}
-                                {user?.favorites
-                                  ?.map((productFavorites) =>
-                                    productFavorites.product.toString()
-                                  )
-                                  .indexOf(item._id) === -1 ? (
-                                  <button
-                                    onClick={() => {
-                                      addProductCardToMyFavorites(
-                                        item._id,
-                                        navigate
-                                      );
-                                    }}
-                                  >
+                          <div className="main__buttons">
+                            {isAuthenticated ? (
+                              <Fragment>
+                                <div className="flex222">
+                                  {" "}
+                                  {user?.favorites
+                                    ?.map((productFavorites) =>
+                                      productFavorites.product.toString()
+                                    )
+                                    .indexOf(item._id) === -1 ? (
+                                    <button
+                                      onClick={() => {
+                                        addProductCardToMyFavorites(
+                                          item._id,
+                                          navigate
+                                        );
+                                      }}
+                                    >
+                                      {" "}
+                                      <img src={XoImage} />{" "}
+                                    </button>
+                                  ) : (
+                                    <button
+                                      onClick={() => {
+                                        // if (isAuthenticated) {
+                                        removeProductCardToMyFavorites(
+                                          item._id,
+                                          navigate
+                                        );
+                                        // } else {
+                                        //   setModalActive(true);
+                                        // }
+                                      }}
+                                    >
+                                      {" "}
+                                      {/* <img src={XoImage} />{" "} */}
+                                      Убрать из Избранного
+                                    </button>
+                                  )}
+                                </div>
+                                <div>
+                                  {" "}
+                                  {}
+                                  {user?.basket
+                                    ?.map((productBasket) =>
+                                      productBasket.product.toString()
+                                    )
+                                    .indexOf(item._id) === -1 ? (
+                                    <button
+                                      onClick={() => {
+                                        // if (isAuthenticated) {
+                                        addProductCardToMyBasket(
+                                          item._id,
+                                          navigate
+                                        );
+                                        // } else {
+                                        //   setModalActive(true);
+                                        // }
+                                      }}
+                                    >
+                                      <img src={PlusImage} />
+                                    </button>
+                                  ) : (
+                                    <button
+                                      onClick={() => {
+                                        // if (isAuthenticated) {
+                                        removeProductCardToMyBasket(
+                                          item._id,
+                                          navigate
+                                        );
+                                        // } else {
+                                        //   setModalActive(true);
+                                        // }
+                                      }}
+                                    >
+                                      {/* <img src={PlusImage} /> */}
+                                      Убрать Из Корзины
+                                    </button>
+                                  )}
+                                </div>
+                              </Fragment>
+                            ) : (
+                              <Fragment>
+                                <div className="flex222">
+                                  {" "}
+                                  <button onClick={() => setModalActive(true)}>
                                     {" "}
                                     <img src={XoImage} />{" "}
                                   </button>
-                                ) : (
-                                  <button
-                                    onClick={() => {
-                                      // if (isAuthenticated) {
-                                      removeProductCardToMyFavorites(
-                                        item._id,
-                                        navigate
-                                      );
-                                      // } else {
-                                      //   setModalActive(true);
-                                      // }
-                                    }}
-                                  >
-                                    {" "}
-                                    {/* <img src={XoImage} />{" "} */}
-                                    Убрать из Избранного
-                                  </button>
-                                )}
-                              </div>
-                              <div>
-                                {" "}
-                                {}
-                                {user?.basket
-                                  ?.map((productBasket) =>
-                                    productBasket.product.toString()
-                                  )
-                                  .indexOf(item._id) === -1 ? (
-                                  <button
-                                    onClick={() => {
-                                      // if (isAuthenticated) {
-                                      addProductCardToMyBasket(
-                                        item._id,
-                                        navigate
-                                      );
-                                      // } else {
-                                      //   setModalActive(true);
-                                      // }
-                                    }}
-                                  >
+                                </div>
+                                <div>
+                                  {" "}
+                                  <button onClick={() => setModalActive(true)}>
                                     <img src={PlusImage} />
                                   </button>
-                                ) : (
-                                  <button
-                                    onClick={() => {
-                                      // if (isAuthenticated) {
-                                      removeProductCardToMyBasket(
-                                        item._id,
-                                        navigate
-                                      );
-                                      // } else {
-                                      //   setModalActive(true);
-                                      // }
-                                    }}
-                                  >
-                                    {/* <img src={PlusImage} /> */}
-                                    Убрать Из Корзины
-                                  </button>
-                                )}
-                              </div>
-                            </Fragment>
-                          ) : (
-                            <Fragment>
-                              <div className="flex222">
-                                {" "}
-                                <button onClick={() => setModalActive(true)}>
-                                  {" "}
-                                  <img src={XoImage} />{" "}
-                                </button>
-                              </div>
-                              <div>
-                                {" "}
-                                <button onClick={() => setModalActive(true)}>
-                                  <img src={PlusImage} />
-                                </button>
-                              </div>
-                            </Fragment>
-                          )}
+                                </div>
+                              </Fragment>
+                            )}
+                          </div>
                         </div>
-                      </li>
-                    </ul>
+                        {/* <div className="second-section__add-info"></div> */}
+                      </div>
+                    </div>
                   </div>
                 );
               })

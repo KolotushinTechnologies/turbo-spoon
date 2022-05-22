@@ -9,6 +9,7 @@ import ErrorInput from "../ErrorInput";
 
 // Import Styles
 import "./Login.css";
+import NextArrow from "../../../img/Next.png";
 
 const Login = ({ loginUser, closeModal, isAuthenticated }) => {
   const hookForm = useForm();
@@ -93,8 +94,18 @@ const Login = ({ loginUser, closeModal, isAuthenticated }) => {
           />
         </div>
         <div className="submitButtonDiv">
-          <button className="submitButton" type="submit">
+          <button
+            className="submitButton auth__button"
+            type="submit"
+            style={{ fontSize: "16px" }}
+          >
             Вход
+            <img
+              className="next__arrow"
+              src={NextArrow}
+              width={20}
+              style={{ margin: "0 0 0 10px " }}
+            />
           </button>
         </div>
       </form>

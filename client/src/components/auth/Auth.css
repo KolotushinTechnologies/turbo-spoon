@@ -1,0 +1,59 @@
+.authorizingBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.authorizingBlock {
+    padding: 15px;
+    color: #ffffff;
+}
+
+.second-section__auth {
+    background-color: #22840024;
+    width: 50%;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
+
+.wrapper-section__auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    color: #ffffff;
+    background-image: url("../../img/AuthBackgroud.png");
+    height: 100%;
+    background-size: cover;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 40px;
+}
+
+.authFieldInput {
+    background-color: inherit;
+    border: 0;
+    border-bottom: 3px solid #fff;
+    border-bottom-color: #3af942;
+    color: #ffffff;
+    outline: none;
+    width: 100%;    
+    /* box-shadow: 0px 0px 20px #3af942; */
+    font-family: 'Montserrat Alternates', sans-serif;
+    padding: 10px 5px 10px 30px;
+}
+
+.errorMessage {
+    color: red;
+}
+
+.auth__button {
+    display: flex;
+    align-items: center;
+}
+
+.modal_button {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}

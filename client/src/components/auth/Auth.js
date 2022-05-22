@@ -6,7 +6,9 @@ import Registration from "./Registration/Registration";
 import Login from "./Login/Login";
 import Modal from "../Modal/Modal";
 
-// import "./Auth.css";
+// Import Styles
+import "./Auth.css";
+import NextArrow from "../../img/Next.png";
 
 const Auth = ({ modalActive, setModalActive, loginStatus, setLoginStatus }) => {
   return (
@@ -16,30 +18,47 @@ const Auth = ({ modalActive, setModalActive, loginStatus, setLoginStatus }) => {
           <>
             <Registration closeModal={setModalActive} />
             <div className="second-section__auth">
-              <p>
-                Зарегистрированы?
+              <div className="wrapper-section__auth">
+                <h2>
+                  Зарегистрируйтесь, чтобы иметь возможность заказывать товары
+                </h2>
                 <button
-                  style={{ backgroundColor: "green" }}
+                  className="submitButton modal_button"
                   onClick={() => setLoginStatus(true)}
                 >
-                  Вход
+                  <p>У вас уже есть аккаунт?</p>
+                  <div>
+                    Войдите
+                    <img
+                      className="next__arrow"
+                      src={NextArrow}
+                      width={20}
+                      style={{ margin: "0 0 0 10px " }}
+                    />
+                  </div>
                 </button>
-              </p>
+              </div>
             </div>
           </>
         ) : (
           <>
             <Login closeModal={setModalActive} />
             <div className="second-section__auth">
-              <p>
-                Нет аккаунта?
+              <div className="wrapper-section__auth">
+                У вас нет аккаунта?
                 <button
-                  style={{ backgroundColor: "green" }}
+                  className="submitButton auth__button"
                   onClick={() => setLoginStatus(false)}
                 >
-                  Регистрация
+                  Зарегистрируйтесь
+                  <img
+                    className="next__arrow"
+                    src={NextArrow}
+                    width={20}
+                    style={{ margin: "0 0 0 10px " }}
+                  />
                 </button>
-              </p>
+              </div>
             </div>
           </>
         )}

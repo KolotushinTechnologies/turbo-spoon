@@ -8,7 +8,7 @@ const ReviewForm = ({ createReviewForProductCard, id }) => {
 
   return (
     <form
-      className="form"
+      className="form__review"
       onSubmit={(e) => {
         e.preventDefault();
         createReviewForProductCard(text, id);
@@ -16,19 +16,29 @@ const ReviewForm = ({ createReviewForProductCard, id }) => {
       }}
     >
       <textarea
+        className="textarea__review"
         onChange={(e) => setText(e.target.value)}
         name="text"
         cols="30"
         rows="5"
         value={text}
-        placeholder="Оставьте Отзыв"
+        placeholder="Оставьте отзыв..."
         required
       />
-      <input
-        type="submit"
-        className="btn btn-dark my-1"
-        value="Оставить Отзыв!"
-      />
+      {text.length > 0 ? (
+        <input
+          type="submit"
+          className="btn btn-dark my-1 button__review"
+          value="Оставить Отзыв!"
+        />
+      ) : (
+        <input
+          disabled
+          type="submit"
+          className="btn btn-dark my-1 button__review"
+          value="Оставить Отзыв!"
+        />
+      )}
     </form>
   );
 };

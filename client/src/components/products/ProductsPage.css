@@ -1,0 +1,35 @@
+.main-section__product {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff !important;
+}
+
+.avatar__product {
+    width: 200px;
+}
+
+.first-section__product {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.second-section__product {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    color: #ffffff;
+}
+
+.first-section__add-info {
+    display: flex;
+}
+
+.main__buttons {
+    display: flex;
+    position: absolute;
+    left: 180px;
+    bottom: 0;
+}

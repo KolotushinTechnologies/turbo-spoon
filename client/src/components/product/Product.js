@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 import Auth from "../auth/Auth";
 
 // Import Styles
+import "./ProductPage.css";
 import ZmeiImage from "../../img/1.png";
 import XoImage from "../../img/хо.png";
 import PlusImage from "../../img/+.png";
+import Balaklava from "../../img/shapka3.png";
 
 const Product = ({
   product,
@@ -26,19 +28,27 @@ const Product = ({
 }) => {
   return (
     <Fragment>
-      <div key={product._id} className="slider__item">
-        <ul className="  ">
-          <li className="gogo11">
-            <Link to="/">{/* <img src={ZmeiImage} /> */}</Link>
-          </li>
-          <li className="gogo11 flex33 ">
-            <Link to={`/product/${product._id}`}>{product.nameProduct}</Link>
-          </li>
-          <li className="gogo11">
-            <div className="flex111">
-              <div className="pravo11">
-                <Link to="/">{product.price}руб</Link>{" "}
+      <div className="main-section__product">
+        <div className="first-section__main-section">
+          <div className="block__product">
+            <Link className="link-avatar" to={`/product/${product._id}`}>
+              <img className="img__product" src={Balaklava} />
+            </Link>
+          </div>
+
+          <div className="description__product">
+            <div className="first-section__description">
+              <div className="main__info">
+                <div className="name-product">
+                  <h1>{product.nameProduct}</h1>
+                </div>
+                <div className="price-product">
+                  <span>{product.price}руб.</span>
+                </div>
               </div>
+            </div>
+
+            <div className="second-section__description">
               {isAuthenticated ? (
                 <Fragment>
                   <div className="flex222">
@@ -59,7 +69,11 @@ const Product = ({
                     ) : (
                       <button
                         onClick={() => {
+                          // if (isAuthenticated) {
                           removeProductCardToMyFavorites(product._id, navigate);
+                          // } else {
+                          //   setModalActive(true);
+                          // }
                         }}
                       >
                         {" "}
@@ -76,7 +90,11 @@ const Product = ({
                       .indexOf(product._id) === -1 ? (
                       <button
                         onClick={() => {
+                          // if (isAuthenticated) {
                           addProductCardToMyBasket(product._id, navigate);
+                          // } else {
+                          //   setModalActive(true);
+                          // }
                         }}
                       >
                         <img src={PlusImage} />
@@ -84,7 +102,11 @@ const Product = ({
                     ) : (
                       <button
                         onClick={() => {
+                          // if (isAuthenticated) {
                           removeProductCardToMyBasket(product._id, navigate);
+                          // } else {
+                          //   setModalActive(true);
+                          // }
                         }}
                       >
                         {/* <img src={PlusImage} /> */}
@@ -111,19 +133,18 @@ const Product = ({
                 </Fragment>
               )}
             </div>
-          </li>
-        </ul>
-      </div>
+          </div>
+        </div>
 
-      <div>
-        <h3>Описание Шапки</h3>
-        <p>{product?.description}</p>
-        <hr />
-        <h3>Состав Шапки</h3>
-        <p>{product?.compound}</p>
-        <hr />
-        <h3>Категория Шапки</h3>
-        <p>{product?.category}</p>
+        <div className="second-section__main-section">
+          <div className="add__description">
+            <p>Состав: {product?.compound}</p>
+
+            <p>Описание: {product?.description}</p>
+
+            <p>Категория: {product?.category}</p>
+          </div>
+        </div>
       </div>
 
       <Auth

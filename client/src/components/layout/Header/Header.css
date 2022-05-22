@@ -1,7 +1,8 @@
 .header {
     overflow: hidden;
     position: relative;
-    width: 100%;
+    /* width: 100%; */
+    /* margin: 0 30px; */
     min-height: 1000px;
 
     background-color: #0c0c0c;
@@ -34,7 +35,8 @@
 .header_no_cover {
     overflow: hidden;
     position: relative;
-    width: 100%;
+    /* width: 100%; */
+    /* margin: 0 30px; */
 
     background-color: #0c0c0c;
 
@@ -79,9 +81,10 @@
 
 .nav {
     display: flex;
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
+    margin: 0 30px;
+    /* width: 100%; */
+    /* margin-right: auto; */
+    /* margin-left: auto; */
     align-items: end;
     justify-content: space-between;
 }
@@ -131,7 +134,7 @@
     font-size: 20px;
     line-height: 24px;
     color: #ffffff;
-
+    cursor: pointer;
     text-decoration: none;
 }
 

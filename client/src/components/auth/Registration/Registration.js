@@ -10,6 +10,7 @@ import ErrorMessage from "../ErrorMessage";
 // Import Styles
 import "./Registration.css";
 import showPasswordImage from "../../../img/showPassword.png";
+import NextArrow from "../../../img/Next.png";
 // import selectArrow from "../../../img/selectArrow.png";
 import ErrorInput from "../ErrorInput";
 
@@ -89,24 +90,13 @@ const Registration = ({
       {/* <span className="authFieldName">Введите номер телефона</span> */}
       <div className="phoneFieldDiv">
         <input
-          className="authFieldInput phoneMask"
-          /* name="phoneMask" */
-          aria-invalid={!!errors.phoneMask + ""}
-          {...reghook("phoneMask", {
-            required: "Empty field",
-            onChange: onChange
-          })}
-          size={phoneMask ? phoneMask.length - 1 || 1 : 1}
-          value={phoneMask}
-        ></input>
-        <input
-          className="authFieldInput phoneNum"
+          className="authFieldInput"
           type="text"
           placeholder=""
           /* name="phoneNumber" */
           aria-invalid={!!errors.phoneNumber + ""}
           {...reghook("phoneNumber", {
-            required: "Empty field",
+            required: "Обязательное поле",
             maxLength: { value: 10, message: "Должно быть 10 символов" },
             minLength: { value: 10, message: "Должно быть 10 символов" },
             pattern: /^[0-9]+$/i,
@@ -130,6 +120,7 @@ const Registration = ({
   return (
     <Fragment>
       <form className="authorizingBlock" onSubmit={handleSubmit(onSubmit)}>
+        <h2>Регистрация</h2>
         <div className="regLeftBlock">
           <div className="authField">
             {/* <span className="authFieldName">Придумайте логин</span> */}
@@ -143,7 +134,7 @@ const Registration = ({
               /* name="login" */
               aria-invalid={!!errors.login + ""}
               {...reghook("login", {
-                required: "Empty field",
+                required: "Обязательное поле",
                 maxLength: 320,
                 minLength: 1,
                 pattern:
@@ -163,7 +154,7 @@ const Registration = ({
               /* name="fullName" */
               aria-invalid={!!errors.fullName + ""}
               {...reghook("fullName", {
-                required: "Empty field",
+                required: "Обязательное поле",
                 maxLength: { value: 30, message: "Length more than 30" },
                 minLength: 1,
                 pattern: /^[a-z0-9]+(|\s([a-z0-9]+)|-([a-z0-9]+))$/i,
@@ -183,7 +174,7 @@ const Registration = ({
               /* name="email" */
               aria-invalid={!!errors.email + ""}
               {...reghook("email", {
-                required: "Empty field",
+                required: "Обязательное поле",
                 maxLength: { value: 320, message: "Email greater than 320" },
                 minLength: 1,
                 pattern:
@@ -208,7 +199,7 @@ const Registration = ({
               /* name="password" */
               aria-invalid={!!errors.password + ""}
               {...reghook("password", {
-                required: "Empty field",
+                required: "Обязательное поле",
                 minLength: {
                   value: 6,
                   message: "Пароль должен быть 6 символов"
@@ -236,7 +227,7 @@ const Registration = ({
               /* name="password2" */
               aria-invalid={!!errors.password2 + ""}
               {...reghook("password2", {
-                required: "Empty field",
+                required: "Обязательное поле",
                 validate: {
                   value: (value) => password == value || "Пароли не совпадают"
                 },
@@ -263,7 +254,7 @@ const Registration = ({
               /* name="fullname" */
               aria-invalid={!!errors.address + ""}
               {...reghook("address", {
-                required: "Empty field",
+                required: "Обязательное поле",
                 maxLength: {
                   value: 100,
                   message: "Максимальное количество символов: 100"
@@ -290,8 +281,18 @@ const Registration = ({
           </div>
         </div>
         <div className="submitButtonDiv">
-          <button type="submit" className="submitButton">
-            Регистрация
+          <button
+            type="submit"
+            className="submitButton auth__button"
+            style={{ fontSize: "16px" }}
+          >
+            Зарегистрироваться{" "}
+            <img
+              className="next__arrow"
+              src={NextArrow}
+              width={20}
+              style={{ margin: "0 0 0 10px " }}
+            />
           </button>
         </div>
       </form>
