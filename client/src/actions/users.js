@@ -42,7 +42,7 @@ export const getMyUserProfile = () => async (dispatch) => {
 // @route    POST http://localhost:5000/api/users/registration
 // @desc     Register user
 // @access   Public
-export const registration = (formData) => async (dispatch) => {
+export const registration = (formData, navigate) => async (dispatch) => {
   try {
     const res = await api.post("/users/registration", formData);
 
@@ -52,6 +52,7 @@ export const registration = (formData) => async (dispatch) => {
     });
 
     dispatch(getMyUserProfile());
+    navigate("/dashboard");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -69,7 +70,7 @@ export const registration = (formData) => async (dispatch) => {
 // @route    POST http://localhost:5000/api/users/login
 // @desc     Authenticate user & get token(Login User)
 // @access   Public
-export const loginUser = (login, password) => async (dispatch) => {
+export const loginUser = (login, password, navigate) => async (dispatch) => {
   try {
     const res = await api.post("/users/login", { login, password });
 
@@ -79,6 +80,7 @@ export const loginUser = (login, password) => async (dispatch) => {
     });
 
     dispatch(getMyUserProfile());
+    navigate("/dashboard");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -211,30 +213,34 @@ export const removeProductCardToMyBasket =
 // @route    POST http://localhost:5000/api/users/create-order
 // @desc     Create order(Send Email Message)
 // @access   Private
-export const createOrder = (price, navigate) => async (dispatch) => {
-  try {
-    const res = await api.post("/users/create-order", { price });
+export const createOrder =
+  (price, methodDelivery, navigate) => async (dispatch) => {
+    try {
+      const res = await api.post("/users/create-order", {
+        price,
+        methodDelivery
+      });
 
-    dispatch({
-      type: UPDATE_MY_PROFILE,
-      payload: res.data
-    });
+      dispatch({
+        type: UPDATE_MY_PROFILE,
+        payload: res.data
+      });
 
-    dispatch(setAlert("Ваш Заказ Успешно Оформлен!", "success"));
+      dispatch(setAlert("Ваш Заказ Успешно Оформлен!", "success"));
 
-    navigate("/dashboard");
-  } catch (err) {
-    const errors = err.response.data.errors;
+      navigate("/dashboard");
+    } catch (err) {
+      const errors = err.response.data.errors;
 
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+      if (errors) {
+        errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+      }
+
+      dispatch({
+        type: USER_ERROR
+      });
     }
-
-    dispatch({
-      type: USER_ERROR
-    });
-  }
-};
+  };
 
 // Get User Favorites
 // @route    GET http://localhost:5000/api/users/my-favorites

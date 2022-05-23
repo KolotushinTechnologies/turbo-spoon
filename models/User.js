@@ -8,7 +8,7 @@ const UserSchema = new Schema(
     fullName: { type: String, required: true },
     address: { type: String, required: true },
     phoneNumber: { type: String, required: true },
-    avatar: { type: String },
+    avatar: { type: Schema.Types.ObjectId, ref: "Avatar" },
     //   ========================
     basket: [
       {
@@ -39,6 +39,9 @@ const UserSchema = new Schema(
       {
         nameOrder: { type: String, required: true },
         products: [{ type: Schema.Types.ObjectId, ref: "ProductCard" }],
+        numberOrder: { type: String, required: true },
+        statusOrder: { type: Boolean, default: false },
+        methodDelivery: { type: String, required: true },
         price: Number,
         countProducts: Number
       }

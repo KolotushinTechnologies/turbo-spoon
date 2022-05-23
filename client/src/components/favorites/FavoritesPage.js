@@ -15,6 +15,7 @@ import {
 import FavoritesProducts from "./Favorites";
 
 // Import Styles
+import "./FavoritesMyProfile.css";
 import Spinner from "../layout/Spinner";
 
 const FavoritesPage = ({
@@ -32,22 +33,26 @@ const FavoritesPage = ({
   //   }, [getMyFavorites]);
 
   return (
-    <section className="container">
+    <section className="main-section__favorites-page">
       {loading ? (
         <Spinner />
       ) : (
         <Fragment>
-          <h1>Избранное({user?.favorites?.length})</h1>
-          <FavoritesProducts
-            favorites={user.favorites}
-            basket={user.basket}
-            addProductCardToMyBasket={addProductCardToMyBasket}
-            addProductCardToMyFavorites={addProductCardToMyFavorites}
-            removeProductCardToMyBasket={removeProductCardToMyBasket}
-            removeProductCardToMyFavorites={removeProductCardToMyFavorites}
-            navigate={navigate}
-            loading={loading}
-          />
+          <div className="title__favorites">
+            <h1>Избранное({user?.favorites?.length})</h1>
+          </div>
+          <div className="favorites__products">
+            <FavoritesProducts
+              favorites={user.favorites}
+              basket={user.basket}
+              addProductCardToMyBasket={addProductCardToMyBasket}
+              addProductCardToMyFavorites={addProductCardToMyFavorites}
+              removeProductCardToMyBasket={removeProductCardToMyBasket}
+              removeProductCardToMyFavorites={removeProductCardToMyFavorites}
+              navigate={navigate}
+              loading={loading}
+            />
+          </div>
         </Fragment>
       )}
     </section>

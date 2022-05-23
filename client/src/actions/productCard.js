@@ -13,11 +13,13 @@ import {
 // @route    GET http://localhost:5000/api/product-cards/all?category=categoryName
 // @desc     Get all product cards
 // @access   Public
-export const getAllProductCards = () => async (dispatch) => {
+export const getAllProductCards = (categoryName) => async (dispatch) => {
   dispatch({ type: CLEAR_PRODUCT });
 
   try {
-    const res = await api.get("/product-cards/all");
+    const res = await api.get("/product-cards/all", {
+      params: { category: categoryName }
+    });
     // const res = await axios.get("http://localhost:5000/api/product-cards/all");
     // console.log(res);
 

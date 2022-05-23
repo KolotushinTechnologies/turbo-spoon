@@ -16,7 +16,7 @@ import {
 // Import Components
 import Profile from "./Profile/Profile";
 // import Product from "../product/Product";
-import FavoritesProducts from "../favorites/Favorites";
+import FavoritesMyProfile from "../favorites/FavoritesMyProfile";
 
 // Import Styles
 import "./MyProfile.css";
@@ -46,63 +46,54 @@ const MyProfile = ({
 
   return (
     <Fragment>
-      <Profile
-        // avatar={avatar && avatar}
-        fullName={user.fullName && user.fullName}
-        login={user.login && user.login}
-        address={user.address && user.address}
-        email={user.email && user.email}
-        phoneNumber={user.phoneNumber && user.phoneNumber}
-        logout={logout}
-      />
-      <div className="profileHeaderDiv">
-        <span className="profOrdersText">
-          Избранное({user?.favorites && user?.favorites?.length})
-        </span>
-        <Link className="profOrdersLink" to="/orders">
-          Смотреть все
-        </Link>
-      </div>
-      <div className="profileOrdersDiv">
-        <FavoritesProducts
-          favorites={user.favorites}
-          basket={user.basket}
-          addProductCardToMyBasket={addProductCardToMyBasket}
-          addProductCardToMyFavorites={addProductCardToMyFavorites}
-          removeProductCardToMyBasket={removeProductCardToMyBasket}
-          removeProductCardToMyFavorites={removeProductCardToMyFavorites}
-          navigate={navigate}
-          loading={loading}
-          //   products={favorites}
-          //   isAuthenticated={isAuthenticated}
-          //   basket={basket}
-          //   favorites={favorites}
-          //   addProductCardToMyBasket={addProductCardToMyBasket}
-          //   addProductCardToMyFavorites={addProductCardToMyFavorites}
-          //   removeProductCardToMyBasket={removeProductCardToMyBasket}
-          //   removeProductCardToMyFavorites={removeProductCardToMyFavorites}
-          //   navigate={navigate}
-          //   loading={loading}
-          //   setModalActive={setModalActive}
-        />
-        {/* {favorites?.favorites?.length > 0
-          ? favorites?.favorites?.map((product) => (
-              <Product
-                product={product}
-                isAuthenticated={isAuthenticated}
-                user={user}
-                addProductCardToMyBasket={addProductCardToMyBasket}
-                removeProductCardToMyBasket={removeProductCardToMyBasket}
-                addProductCardToMyFavorites={addProductCardToMyFavorites}
-                removeProductCardToMyFavorites={removeProductCardToMyFavorites}
-                navigate={navigate}
-                modalActive={modalActive}
-                setModalActive={setModalActive}
-                loginStatus={loginStatus}
-                setLoginStatus={setLoginStatus}
-              />
-            ))
-          : "Избранного нет!"} */}
+      <div className="main-section__profile">
+        <div className="first-section__profile">
+          <Profile
+            // avatar={avatar && avatar}
+            fullName={user?.fullName && user?.fullName}
+            login={user?.login && user?.login}
+            address={user?.address && user?.address}
+            email={user?.email && user?.email}
+            phoneNumber={user?.phoneNumber && user?.phoneNumber}
+            logout={logout}
+          />
+          <div className="profile-section__favorites">
+            <h2 className="favorites__text">
+              Избранное({user?.favorites && user?.favorites?.length})
+            </h2>
+            <FavoritesMyProfile
+              favorites={user?.favorites}
+              basket={user?.basket}
+              addProductCardToMyBasket={addProductCardToMyBasket}
+              addProductCardToMyFavorites={addProductCardToMyFavorites}
+              removeProductCardToMyBasket={removeProductCardToMyBasket}
+              removeProductCardToMyFavorites={removeProductCardToMyFavorites}
+              navigate={navigate}
+              loading={loading}
+            />
+          </div>
+        </div>
+        <div className="second-section__profile">
+          <div className="order-section__profile">
+            <div className="first-section__order">
+              <h1>Заказы({user?.orders && user?.orders?.length})</h1>
+            </div>
+            <div className="second-section__order">
+              {user?.orders?.length > 0 ? (
+                user?.orders?.map((userOrder) => (
+                  <div key={userOrder._id} className="order__block">
+                    <h3>
+                      {userOrder.numberOrder}.............................
+                      {userOrder.statusOrder === true && "оформлен"}
+                    </h3>
+                  </div>
+                ))
+              ) : (
+                <h2>Заказов нет!</h2>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </Fragment>
   );

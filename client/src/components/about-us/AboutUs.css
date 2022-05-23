@@ -1,0 +1,38 @@
+.main-section__about-us {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    padding: 0 6rem;
+}
+
+.first-section__about-us, .second-section__about-us {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.second-section__about-us {
+    flex-direction: column;
+}
+
+.description__about {
+    width: 50%;
+}
+
+.add__description {
+    width: 50%;
+    text-align: center;
+}
+
+.media__about {
+    margin: 30px 0;
+}
+
+.media__about a {
+    margin: 10px;
+}
+
+.img__about {
+    margin: 0 30px;
+}

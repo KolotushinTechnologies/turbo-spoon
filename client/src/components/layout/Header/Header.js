@@ -45,7 +45,7 @@ const Header = ({ userWork: { isAuthenticated, user }, logout }) => {
                 </li>
                 <li className="menu_item">
                   <Link
-                    to="/about"
+                    to="/about-us"
                     className="menu_link link"
                     onClick={() => setMainHeader(false)}
                   >
@@ -54,7 +54,7 @@ const Header = ({ userWork: { isAuthenticated, user }, logout }) => {
                 </li>
                 <li className="menu_item">
                   <Link
-                    to="/"
+                    to="/delivery"
                     className="menu_link link"
                     onClick={() => setMainHeader(false)}
                   >

@@ -20,11 +20,17 @@ const ProfileInfo = ({
 }) => {
   return (
     <div className="profileInfo" active={!mobileInfoHidden + ""}>
-      {avatar ? (
-        <img className="profileImage" src={avatar?.url} alt="Нет Фото" />
-      ) : (
-        <img className="profileImage" src={DefaultAvatar} alt="Нет Фото" />
-      )}
+      <div className="profileImageDiv">
+        {avatar ? (
+          <img className="profileImage" src={avatar?.url} alt="Нет Фото" />
+        ) : (
+          <img className="profileImage" src={DefaultAvatar} alt="Нет Фото" />
+        )}
+        <button onClick={logout} className="exitButton">
+          Выход
+        </button>
+      </div>
+
       <div className="profileInfoContent">
         <div className="nameAndButtonsDiv">
           <div className="nameAndRoleDiv">
@@ -42,9 +48,9 @@ const ProfileInfo = ({
             <button onClick={openProfileSettings} className="editButton">
               {displayEditProfile ? "Отмена" : "Редактировать"}
             </button>
-            <button onClick={logout} className="exitButton">
+            {/* <button onClick={logout} className="exitButton">
               Выход
-            </button>
+            </button> */}
           </div>
         </div>
         <span className="profileLogin">{login}</span>
@@ -55,7 +61,7 @@ const ProfileInfo = ({
               // isseller={iAmSeller + ""}
               // active={!mobileInfoHidden + ""}
             >
-              <span className="profInfoHeader">E-mail</span>
+              {/* <span className="profInfoHeader">E-mail</span> */}
               <span className="profInfoContent">{email}</span>
               {/* <label className="profEmailHowLogin">
                 <input type="checkbox" />
@@ -69,7 +75,7 @@ const ProfileInfo = ({
               // isseller={iAmSeller + ""}
               // active={!mobileInfoHidden + ""}
             >
-              <span className="profInfoHeader">Ваш адрес</span>
+              {/* <span className="profInfoHeader">Ваш адрес</span> */}
               <span className="profInfoContent">{address}</span>
               {/* <label className="profEmailHowLogin">
                 <input type="checkbox" />
@@ -83,7 +89,7 @@ const ProfileInfo = ({
               // isseller={iAmSeller + ""}
               // active={!mobileInfoHidden + ""}
             >
-              <span className="profInfoHeader">Номер телефона</span>
+              {/* <span className="profInfoHeader">Номер телефона</span> */}
               <span className="profInfoContent">{phoneNumber}</span>
             </div>
           </div>
@@ -91,11 +97,7 @@ const ProfileInfo = ({
             className="profileMoreInfoDiv passwordContentDiv"
             // isseller={iAmSeller + ""}
             // active={!mobileInfoHidden + ""}
-          >
-            <span className="profInfoHeader">Пароль</span>
-            <input className="passwordText" readOnly value="* * * * * * *" />
-            <button className="profChangePassButton">Изменить пароль</button>
-          </div>
+          ></div>
         </div>
       </div>
     </div>

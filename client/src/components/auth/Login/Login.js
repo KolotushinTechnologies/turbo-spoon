@@ -1,6 +1,6 @@
 // Import Engine
 import React, { Fragment, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { loginUser } from "../../../actions/users";
@@ -35,6 +35,8 @@ const Login = ({ loginUser, closeModal, isAuthenticated }) => {
 
   const { login, password } = formData;
 
+  const navigate = useNavigate();
+
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setValue(e.target.name, e.target.value);
@@ -43,7 +45,7 @@ const Login = ({ loginUser, closeModal, isAuthenticated }) => {
 
   const onSubmit = (e) => {
     /* e.preventDefault(); */
-    loginUser(login, password);
+    loginUser(login, password, navigate);
     closeModal(false);
   };
 

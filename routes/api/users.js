@@ -7,6 +7,9 @@ const { check } = require("express-validator");
 // Import Middlewares
 const auth = require("../../middleware/auth");
 
+// Import Multer
+const multer = require("../../utils/multer");
+
 // Import Controllers
 const {
   registration,
@@ -27,6 +30,7 @@ const {
 // @access   Public
 router.post(
   "/registration",
+  multer.single("file"),
   check("email", "Please include a valid email").isEmail(),
   check(
     "password",

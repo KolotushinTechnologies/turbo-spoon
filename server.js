@@ -15,6 +15,7 @@ const productCardsRoute = require("./routes/api/productCards");
 // Init Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// app.use(express.)
 app.use(express.static("public"));
 app.use(cors());
 

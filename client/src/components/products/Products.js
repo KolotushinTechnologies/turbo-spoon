@@ -10,6 +10,7 @@ import XoImage from "../../img/хо.png";
 import PlusImage from "../../img/+.png";
 import Spinner from "../layout/Spinner";
 import Balaklava from "../../img/shapka3.png";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 const Products = ({
   user,
@@ -72,6 +73,7 @@ const Products = ({
                                     )
                                     .indexOf(item._id) === -1 ? (
                                     <button
+                                      className="button__favorites"
                                       onClick={() => {
                                         addProductCardToMyFavorites(
                                           item._id,
@@ -80,24 +82,27 @@ const Products = ({
                                       }}
                                     >
                                       {" "}
-                                      <img src={XoImage} />{" "}
+                                      <img
+                                        className="img__favorites"
+                                        src={XoImage}
+                                      />{" "}
                                     </button>
                                   ) : (
                                     <button
+                                      className="button__favorites"
                                       onClick={() => {
-                                        // if (isAuthenticated) {
                                         removeProductCardToMyFavorites(
                                           item._id,
                                           navigate
                                         );
-                                        // } else {
-                                        //   setModalActive(true);
-                                        // }
                                       }}
                                     >
                                       {" "}
-                                      {/* <img src={XoImage} />{" "} */}
-                                      Убрать из Избранного
+                                      <img
+                                        className="img__favorites"
+                                        src={XoImage}
+                                      />{" "}
+                                      {/* Убрать из Избранного */}
                                     </button>
                                   )}
                                 </div>
@@ -111,20 +116,20 @@ const Products = ({
                                     .indexOf(item._id) === -1 ? (
                                     <button
                                       onClick={() => {
-                                        // if (isAuthenticated) {
                                         addProductCardToMyBasket(
                                           item._id,
                                           navigate
                                         );
-                                        // } else {
-                                        //   setModalActive(true);
-                                        // }
                                       }}
                                     >
-                                      <img src={PlusImage} />
+                                      <img
+                                        className="add-to-basket"
+                                        src={PlusImage}
+                                      />
                                     </button>
                                   ) : (
                                     <button
+                                      className="close__basket"
                                       onClick={() => {
                                         // if (isAuthenticated) {
                                         removeProductCardToMyBasket(
@@ -137,7 +142,8 @@ const Products = ({
                                       }}
                                     >
                                       {/* <img src={PlusImage} /> */}
-                                      Убрать Из Корзины
+                                      {/* Убрать Из Корзины */}
+                                      <AiFillCloseCircle />
                                     </button>
                                   )}
                                 </div>

@@ -1,5 +1,6 @@
 const UserModel = require("../models/User");
 const RoleModel = require("../models/Role");
+const AvatarModel = require("../models/Avatar");
 const ProductCardModel = require("../models/ProductCard");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -47,14 +48,39 @@ const registration = async (req, res) => {
       fullName: fullName,
       email: email,
       phoneNumber: `+7${phoneNumber}`,
+      // avatar: newAvatar._id,
       address: address,
       password: hashPassword,
       roles: [userRoleCustomerUSER.value]
     });
 
+    const newUser = await UserModel.findOne({ _id: newUserCustomer._id });
+
+    const { file } = req;
+
+    const ext = file.originalname.split(".").pop();
+
+    const newAvatar = await AvatarModel.create({
+      filename: file.path.split("\\").pop(),
+      ext: ext,
+      url: `${req.protocol}://${
+        req.headers.host
+      }/files/images/avatars/${file.path.split("\\").pop()}`,
+      user: newUser._id
+    });
+
+    await UserModel.updateOne(
+      { _id: newUser._id },
+      {
+        $set: {
+          avatar: newAvatar._id
+        }
+      }
+    );
+
     const payloadCustomer = {
       user: {
-        id: newUserCustomer.id
+        id: newUser.id
       }
     };
 
@@ -329,7 +355,7 @@ const createOrder = async (req, res) => {
 
     const user = await UserModel.findOne({ _id: userId });
 
-    const { price } = req.body;
+    const { price, methodDelivery } = req.body;
 
     if (!user) {
       return res.status(404).json({
@@ -346,6 +372,9 @@ const createOrder = async (req, res) => {
     const newOrder = {
       nameOrder: `Заказ от пользователя ${user.login}`,
       products: user.basket.map((basketProduct) => basketProduct.product),
+      numberOrder: `Заказ#${user.orders.length + 1}`,
+      statusOrder: true,
+      methodDelivery: methodDelivery,
       price: price,
       countProducts: user.basket.length
     };

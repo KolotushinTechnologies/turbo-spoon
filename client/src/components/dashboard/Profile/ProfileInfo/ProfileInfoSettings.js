@@ -133,6 +133,9 @@ const ProfileInfoSettings = ({
             })}
             accept="image/jpeg,image/png"
           />
+          <button onClick={logout} className="exitButton">
+            Выход
+          </button>
           {/* <input type="submit" value="Save" /> */}
           <ErrorMessage
             error={avatarForm.formState.errors.avatar}
@@ -180,9 +183,9 @@ const ProfileInfoSettings = ({
               <button onClick={openProfileSettings} className="editButton">
                 {displayEditProfile ? "Отмена" : "Редактировать"}
               </button>
-              <button onClick={logout} className="exitButton">
+              {/* <button onClick={logout} className="exitButton">
                 Выход
-              </button>
+              </button> */}
             </div>
           </div>
           {/* <span className="profileLogin">{login}</span> */}
@@ -220,7 +223,7 @@ const ProfileInfoSettings = ({
                 isseller={iAmSeller + ""}
                 active={!mobileInfoHidden + ""}
               > */}
-              <span className="profInfoHeader">Ваш E-mail</span>
+              {/* <span className="profInfoHeader">Ваш E-mail</span> */}
               <ErrorInput
                 className="profInfoInput"
                 type="text"
@@ -258,7 +261,7 @@ const ProfileInfoSettings = ({
                 isseller={iAmSeller + ""}
                 active={!mobileInfoHidden + ""}
               > */}
-              <span className="profInfoHeader">Ваш номер телефона</span>
+              {/* <span className="profInfoHeader">Ваш номер телефона</span> */}
               <ErrorInput
                 className="profInfoInput"
                 type="text"
@@ -281,7 +284,7 @@ const ProfileInfoSettings = ({
                 error={errors.phoneNumber}
               />
 
-              <span className="profInfoHeader">Ваш адрес</span>
+              {/* <span className="profInfoHeader">Ваш адрес</span> */}
               <ErrorInput
                 className="profInfoInput"
                 type="text"

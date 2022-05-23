@@ -1,6 +1,6 @@
 .profileInfo {
-    margin: 32px 40px 54px;
-    padding: 32px;
+    margin: 32px 40px 100px 40px;
+    /* padding: 32px; */
     background: #0C0C0C;
     border-radius: 24px;
     display: flex;
@@ -45,8 +45,8 @@
 .profileInfoContent {
     display: flex;
     flex-direction: column;
-    margin-left: 40px;
-    width: 100%;
+    /* margin-left: 40px; */
+    /* width: 100%; */
 }
 
 .nameAndButtonsDiv {
@@ -67,8 +67,8 @@
 }
 
 .profileNameText {
-    font-size: 36px;
-    line-height: 44px;
+    /* font-size: 36px;
+    line-height: 44px; */
     color: #0C0C0C;
 }
 
@@ -109,8 +109,8 @@
     font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
-    font-size: 24px;
-    line-height: 29px;
+    /* font-size: 24px; */
+    /* line-height: 29px; */
     color: #a4a4a4;
 }
 

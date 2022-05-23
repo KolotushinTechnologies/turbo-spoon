@@ -1,5 +1,5 @@
 .profileMoreInfo {
-    margin-top: 12px;
+    /* margin-top: 12px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -35,11 +35,11 @@
 }
 
 .profMoreInfoBlock2 {
-    margin-top: 24px;
+    /* margin-top: 24px; */
 }
 
 .profInfoHeader {
-    font-family: Montserrat;
+    font-family: 'Montserrat Alternates', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -54,20 +54,25 @@
 .profInfoContent,
 .profInfoInput {
     margin-top: 4px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
+    font-family: 'Montserrat Alternates', sans-serif;
     font-size: 18px;
-    line-height: 22px;
-    color: #0C0C0C;
+    /* line-height: 22px; */
+    color: #ffffff;
 }
 
 .profInfoInput {
-    width: 100%;
+    /* width: 100%; */
     outline: none;
     border-width: 0;
     padding: 2px 10px;
-    border-radius: 13px;
+    background-color: inherit;
+    border: 0;
+    border-bottom: 3px solid #fff;
+    border-bottom-color: #3af942;
+    color: #ffffff;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 18px;
+    padding: 10px 5px 10px 30px;
 }
 
 .profEmailHowLogin {
@@ -92,7 +97,7 @@
 }
 
 .profileMoreInfoDiv:nth-child(2) {
-    margin: 0 8px;
+    /* margin: 0 8px; */
 }
 
 /* .profileMoreInfoDiv:nth-child(1n + 1) {

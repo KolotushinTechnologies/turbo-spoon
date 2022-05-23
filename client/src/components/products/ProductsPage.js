@@ -8,13 +8,13 @@ import {
   addProductCardToMyBasket,
   addProductCardToMyFavorites,
   removeProductCardToMyBasket,
-  removeProductCardToMyFavorites,
-  getMyFavorites
+  removeProductCardToMyFavorites
+  // getMyFavorites
 } from "../../actions/users";
 
 // Import Components
 import Auth from "../auth/Auth";
-import Products from "./Products";
+import ProductsMain from "./ProductsMain";
 
 // Import Styles
 // import "./MainPage.css";
@@ -26,7 +26,7 @@ function ProductsPage({
   addProductCardToMyFavorites,
   removeProductCardToMyBasket,
   removeProductCardToMyFavorites,
-  getMyFavorites,
+  // getMyFavorites,
   productCard: { products, loading },
   history
 }) {
@@ -34,44 +34,58 @@ function ProductsPage({
 
   const [modalActive, setModalActive] = useState(false);
   const [loginStatus, setLoginStatus] = useState(false);
+  const [categoryName, setCategoryName] = useState("Шапки");
 
   useEffect(() => {
-    getAllProductCards();
-  }, [getAllProductCards]);
+    getAllProductCards(categoryName);
+  }, [getAllProductCards, categoryName]);
 
-  useEffect(() => {
-    getMyFavorites();
-  }, [getMyFavorites]);
+  console.log(categoryName);
+
+  // useEffect(() => {
+  //   getMyFavorites();
+  // }, [getMyFavorites]);
 
   console.log(products);
 
   return (
     <Fragment>
-      <section className="section-main">
-        <h1>Категории</h1>
-        <div>
-          <p>Шапки</p>
-          <p>Балаклавы</p>
-          <p>Топы</p>
+      <section className="section-main main-section__products-page">
+        <div className="first-section__products-page">
+          <button
+            className="category__button first__category"
+            onClick={() => setCategoryName("Шапки")}
+          >
+            Шапки
+          </button>
+          <button
+            className="category__button second__category"
+            onClick={() => setCategoryName("Балаклавы")}
+          >
+            Балаклавы
+          </button>
+          <button
+            className="category__button third__category"
+            onClick={() => setCategoryName("Топы")}
+          >
+            Топы
+          </button>
         </div>
-
-        {/* <div className="contr_slider">
-        <div className="slider"> */}
-        {/* <Carousel> */}
-        <Products
-          user={user}
-          getAllProductCards={getAllProductCards}
-          products={products}
-          isAuthenticated={isAuthenticated}
-          addProductCardToMyBasket={addProductCardToMyBasket}
-          addProductCardToMyFavorites={addProductCardToMyFavorites}
-          removeProductCardToMyBasket={removeProductCardToMyBasket}
-          removeProductCardToMyFavorites={removeProductCardToMyFavorites}
-          navigate={navigate}
-          loading={loading}
-          setModalActive={setModalActive}
-        />
-        {/* </Carousel> */}
+        <div className="second-section__products-page">
+          <ProductsMain
+            user={user}
+            getAllProductCards={getAllProductCards}
+            products={products}
+            isAuthenticated={isAuthenticated}
+            addProductCardToMyBasket={addProductCardToMyBasket}
+            addProductCardToMyFavorites={addProductCardToMyFavorites}
+            removeProductCardToMyBasket={removeProductCardToMyBasket}
+            removeProductCardToMyFavorites={removeProductCardToMyFavorites}
+            navigate={navigate}
+            loading={loading}
+            setModalActive={setModalActive}
+          />
+        </div>
 
         {/* Registration And Authorization */}
         <Auth
@@ -87,7 +101,7 @@ function ProductsPage({
 
 ProductsPage.propTypes = {
   getAllProductCards: PropTypes.func.isRequired,
-  getMyFavorites: PropTypes.func.isRequired,
+  // getMyFavorites: PropTypes.func.isRequired,
   addProductCardToMyBasket: PropTypes.func.isRequired,
   addProductCardToMyFavorites: PropTypes.func.isRequired,
   removeProductCardToMyBasket: PropTypes.func.isRequired,
@@ -103,7 +117,7 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getAllProductCards,
-  getMyFavorites,
+  // getMyFavorites,
   addProductCardToMyBasket,
   addProductCardToMyFavorites,
   removeProductCardToMyBasket,

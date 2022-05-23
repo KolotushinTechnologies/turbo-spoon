@@ -1,5 +1,6 @@
 // Import Engine
 import React, { createRef, Fragment, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAlert } from "../../../actions/alert";
 import { registration } from "../../../actions/users";
@@ -46,7 +47,8 @@ const Registration = ({
     phoneNumber: "",
     address: "",
     password: "",
-    password2: ""
+    password2: "",
+    avatar: null
   });
 
   // const [iAmSeller, setiAmSeller] = useState(false);
@@ -57,12 +59,15 @@ const Registration = ({
     login,
     fullName,
     email,
+    avatar,
     phoneMask,
     phoneNumber,
     address,
     password,
     password2
   } = formData;
+
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -73,15 +78,21 @@ const Registration = ({
 
   const onSubmit = async (e) => {
     /* e.preventDefault(); */
-    console.log("Ok");
-    registration({
-      login,
-      fullName,
-      email,
-      address,
-      phoneNumber,
-      password
-    });
+    const data = new FormData();
+    data.append("file", avatar);
+    // console.log("Ok");
+    registration(
+      {
+        login,
+        fullName,
+        email,
+        address,
+        phoneNumber,
+        password,
+        file: data
+      },
+      navigate
+    );
     closeModal(false);
   };
 
@@ -119,7 +130,11 @@ const Registration = ({
 
   return (
     <Fragment>
-      <form className="authorizingBlock" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        encType="multipart/form-data"
+        className="authorizingBlock"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <h2>Регистрация</h2>
         <div className="regLeftBlock">
           <div className="authField">
@@ -270,14 +285,16 @@ const Registration = ({
           <div className="authField">
             <span className="authFieldName">Добавить фото</span>
             <span className="authFieldSubName">Png/Jpeg & up to 10 MB</span>
-            {/* <label className="regDownloadImageDiv">
-                <div className="regDownloadImageBG">Tap for download</div>
-                <input
-                  className="regDownloadImageInput"
-                  type="file"
-                  accept="image/*"
-                ></input>
-              </label> */}
+            <label className="regDownloadImageDiv">
+              <div className="regDownloadImageBG">Tap for download</div>
+              <input
+                className="regDownloadImageInput"
+                type="file"
+                name="avatar"
+                onChange={onChange}
+                accept="image/*"
+              ></input>
+            </label>
           </div>
         </div>
         <div className="submitButtonDiv">

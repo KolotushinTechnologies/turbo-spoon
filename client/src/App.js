@@ -20,6 +20,8 @@ import ProductPage from "./components/product/ProductPage";
 import MyProfile from "./components/dashboard/MyProfile";
 import FavoritesPage from "./components/favorites/FavoritesPage";
 import BasketPage from "./components/basket/BasketPage";
+import DeliveryPage from "./components/delivery/Delivery";
+import AboutUsPage from "./components/about-us/AboutUs";
 
 // Import Styles
 import "./App.css";
@@ -51,6 +53,8 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="products" element={<ProductsPage />} />
             <Route path="product/:id" element={<ProductPage />} />
+            <Route path="delivery" element={<DeliveryPage />} />
+            <Route path="about-us" element={<AboutUsPage />} />
             <Route
               path="dashboard"
               element={<PrivateRoute component={MyProfile} />}
