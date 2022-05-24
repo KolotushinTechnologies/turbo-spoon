@@ -1,10 +1,10 @@
 .main-section__profile {
     display: flex;
-
+    margin: 0 100px;
 }
 
 .first-section__profile {
-    width: 50%;
+    width: 70%;
     margin: 30px;
 }
 
@@ -15,8 +15,8 @@
     border: 2px solid #ffffff;
     box-shadow: 0px 0px 20px #82085c;
     border-radius: 10px;
-    padding: 50px;
-    margin: 32px 40px 54px;
+    padding: 25px;
+    /* margin: 32px 40px 54px; */
 }
 
 .profile-section__favorites .slick-slider  {
@@ -29,8 +29,8 @@
 }
 
 .second-section__profile {
-    width: 50%;
-    margin: 80px 0;
+    width: 30%;
+    margin: 30px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,7 +40,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
+    width: 100%;
     height: 100%;
     border: 2px solid #ffffff;
     box-shadow: 0px 0px 20px #82085c;
@@ -61,15 +61,16 @@
 }
 
 .profileImage {
-    width: 228px;
-    height: 228px;
-    border-radius: 12px;
-    object-fit: contain;
+    width: 185px;
+    height: 185px;
+    border-radius: 12px px;
+    border: 1px solid #ffffff;
+    object-fit: cover;
 }
 
 .donloadImgBg {
-    width: 228px;
-    height: 228px;
+    width: 185px;
+    height: 185px;
     position: absolute;
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.7);
@@ -84,16 +85,17 @@
 .profileImageDiv {
     display: flex;
     flex-direction: column;
-    width: 228px;
-    height: 228px;
+    align-items: center;
+    width: 185px;
+    /* height: 185px; */
 }
 
 .profileImageDiv>input {
-    width: 228px;
-    height: 228px;
+    width: 185px;
+    height: 185px;
     opacity: 0;
     position: absolute;
-    margin-left: -228px;
+    /* margin-left: -228px; */
     z-index: 1000;
 }
 
@@ -159,7 +161,7 @@
 
 .exitButton {
     color: #FF0000;
-    margin: 15px 0;
+    margin: 15px 0 0 0;
 }
 
 .profileLogin {
@@ -202,106 +204,74 @@
     margin: 40px 0 0;
 }
 
-@media (max-width: 700px) {
-    input.profileNameText {
-        text-align: center;
+@media (max-width: 1290px) {
+    .order__block {
+        padding: 0 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .main-section__profile {
+        flex-direction: column;
+        align-items: center;
+        /* margin: 0 5px; */
     }
 
-    .moreDetailsText {
-        display: initial;
+    .first-section__profile, .second-section__profile {
+        width: 100%;
     }
+
+    .profile-section__favorites .slick-slider {
+        width: 300px;
+    }
+
+    .main__buttons-favorites {
+        left: 92px !important;
+    }
+
+    /* .profileInfo {
+        display: flex;
+        flex-direction: column;
+    } */
 
     .profileInfoContent {
-        margin-left: 12px;
-    }
-
-    .profileInfo {
-        margin: 76px 16px 32px;
-        padding: 0;
-        background: white;
-    }
-
-    .profileLogin {
         margin: 0;
-        font-size: 14px;
-        line-height: 17px;
     }
 
-    .profileImage,
-    .profileImageDiv,
-    .donloadImgBg,
-    .profileImageDiv>input {
-        width: 120px;
-        height: 120px;
+    .profileImage, input[type="file"][name="avatar"], .donloadImgBg {
+        width: 100px;
+        height: 100px;
     }
 
-    .profileImageDiv>input {
-        margin-left: -120px;
+    input[type="file"][name="avatar"] {
+        cursor: pointer;
     }
 
     .donloadImgBg {
         font-size: 14px;
-        line-height: 20px;
     }
 
-    .profileNameText {
-        font-size: 24px;
-        line-height: 24px;
-    }
-
-    .nameAndButtonsDiv {
-        align-items: flex-start;
-    }
-
-    .nameAndRoleDiv {
-        position: absolute;
-        top: 140px;
-        left: 16px;
-        right: 16px;
-        justify-content: center;
-    }
-
-    .editExitButtonsDiv {
-        position: absolute;
-        right: 15px;
-        margin-top: 100px;
-    }
-
-    .moreDetailsText {
-        position: absolute;
-        margin-top: 96px;
-    }
-
-    .profileRoleText {
-        display: none;
-    }
-
-    .editButton,
-    .exitButton {
+    .profileNameText, .profileLogin, .profInfoContent,
+    .profInfoInput, .profInfoContent,
+    .profInfoInput, .exitButton { 
         font-size: 14px;
-        line-height: 16px;
     }
 
-    .editButton {
-        margin-right: 8px;
-    }
+        .profileNameText,
+        .profileLogin,
+        .profInfoContent,
+        .profInfoInput,
+        .profInfoContent,
+        .profInfoInput {
+            margin: 0 0 0 25px;
+        }
+}
 
-    .exitButton {
-        margin-right: 0;
-    }
-
-
-
-    .whatWeMakeEditButton {
-        right: 31px;
-        margin: 25px 0 0;
-    }
-
-    .profileInfo[active="true"] {
-        height: 377px;
-    }
-
-    .profileInfo[active="true"].displayEditProfile {
-        height: 443px;
+@media (max-width: 750px) {
+    .main-section__profile {
+        flex-direction: column;
+        align-items: center;
+        margin: 0 5px;
     }
 }

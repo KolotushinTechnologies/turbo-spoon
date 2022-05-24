@@ -140,3 +140,46 @@
 .title__favorites {
     margin: 0 0 15px 0;
 }
+
+@media (max-width: 600px) {
+    .main-section__favorites-page {
+        margin: 1rem 3rem;
+    }
+
+    .main-section__favorite-product {
+        width: 224px;
+        height: 224px;
+    }
+}
+
+@media (max-width: 280px) {
+    .main-section__favorite-product {
+        width: 175px;
+        height: 175px;
+    }
+
+    .avatar__favorite-product {
+        width: 100px;
+    }
+
+    .name__favorite-product h3 {
+        font-size: 12px;
+    }
+
+    .main-buttons__favorite-product {
+        bottom: 0;
+        left: 20px;
+    }
+
+    .main-buttons__favorite-product button {
+        font-size: 20px;
+    }
+
+    .close__favorite {
+        width: 20px;
+    }
+
+    .close__button img {
+        width: 20px;
+    }
+}

@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getMyUserProfile, updateMyProfile } from "../../../../actions/users";
+import {
+  getMyUserProfile,
+  updateMyProfile,
+  updateMyProfileAndUploadAvatar
+} from "../../../../actions/users";
 
 // Import Styles
 import "./ProfileInfo.css";
@@ -12,6 +16,7 @@ import DefaultAvatar from "../../../../img/depositphotos_318221368-stock-illustr
 import Spinner from "../../../layout/Spinner";
 import ErrorMessage from "../../../auth/ErrorMessage";
 import ErrorInput from "../../../auth/ErrorInput";
+import { BsFillXCircleFill } from "react-icons/bs";
 
 const initialState = {
   login: "",
@@ -91,7 +96,8 @@ const ProfileInfoSettings = ({
     const data = new FormData();
     data.append("file", e.avatar[0]);
     setAvatarLoading(true);
-    updateMyProfileAndUploadAvatar(data);
+    updateMyProfileAndUploadAvatar(data, navigate);
+    closeSettings(false);
   };
 
   useEffect(() => {
@@ -100,6 +106,17 @@ const ProfileInfoSettings = ({
 
   return (
     <Fragment>
+      <h1>
+        Ваш Профиль
+        <div className="editExitButtonsDiv">
+          <button onClick={openProfileSettings} className="editButton">
+            {displayEditProfile ? "Отмена" : "Редактировать"}
+          </button>
+          {/* <button onClick={logout} className="exitButton">
+                Выход
+              </button> */}
+        </div>
+      </h1>
       <div className="profileInfo" active={!mobileInfoHidden + ""}>
         <form
           className="profileImageDiv"
@@ -133,6 +150,7 @@ const ProfileInfoSettings = ({
             })}
             accept="image/jpeg,image/png"
           />
+          {/* <input type="submit" value="Сохранить" /> */}
           <button onClick={logout} className="exitButton">
             Выход
           </button>
@@ -179,14 +197,6 @@ const ProfileInfoSettings = ({
               More details
               <img src={ButtonBackArrow} />
             </span> */}
-            <div className="editExitButtonsDiv">
-              <button onClick={openProfileSettings} className="editButton">
-                {displayEditProfile ? "Отмена" : "Редактировать"}
-              </button>
-              {/* <button onClick={logout} className="exitButton">
-                Выход
-              </button> */}
-            </div>
           </div>
           {/* <span className="profileLogin">{login}</span> */}
           <div className="nameAndRoleDiv">
@@ -334,6 +344,7 @@ const ProfileInfoSettings = ({
 ProfileInfoSettings.propTypes = {
   userWork: PropTypes.object.isRequired,
   updateMyProfile: PropTypes.func.isRequired,
+  updateMyProfileAndUploadAvatar: PropTypes.func.isRequired,
   getMyUserProfile: PropTypes.func.isRequired
 };
 
@@ -343,5 +354,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   updateMyProfile,
-  getMyUserProfile
+  getMyUserProfile,
+  updateMyProfileAndUploadAvatar
 })(ProfileInfoSettings);

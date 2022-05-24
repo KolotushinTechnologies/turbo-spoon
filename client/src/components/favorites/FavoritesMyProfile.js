@@ -1,5 +1,5 @@
 // Import Engine
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
@@ -22,10 +22,22 @@ const FavoritesMyProfile = ({
   navigate,
   loading
 }) => {
+  const [countSlides, setCountSlides] = useState(2);
+
+  useEffect(() => {
+    window.addEventListener("resize", function () {
+      if (this.window.innerWidth < 1200) {
+        setCountSlides(1);
+      } else {
+        setCountSlides(2);
+      }
+    });
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 2,
+    slidesToShow: countSlides,
     slidesToScroll: 1,
     autoplay: false,
     autoplaySpeed: 2000
@@ -151,101 +163,101 @@ const FavoritesMyProfile = ({
           ) : favorites?.length <= 1 ? (
             favorites?.map((favoriteProduct) => {
               return (
-                <div key={favoriteProduct.product} className="slider__item">
-                  <div className="main-section__product">
-                    <div className="first-section__product">
+                <div
+                  key={favoriteProduct.product}
+                  className="main-section__favorite-product"
+                >
+                  <div className="first-section__favorite-product">
+                    <div className="section__avatar-product">
                       <Link
-                        className="link-avatar__product"
+                        className="link-avatar__favorite-product"
                         to={`/product/${favoriteProduct.product}`}
                       >
-                        <img className="avatar__product" src={Balaklava} />
+                        <img
+                          className="avatar__favorite-product"
+                          src={Balaklava}
+                        />
                       </Link>
                     </div>
-                    <div className="second-section__product">
-                      <div className="first-section__add-info">
-                        <div className="add__info">
-                          <div className="name__product">
-                            <span>{favoriteProduct.nameProduct}</span>
-                          </div>
-                          <div className="price__product">
-                            <span>{favoriteProduct.price}руб.</span>
-                          </div>
+                    <div className="section-info__favorite-product">
+                      <div className="info__product">
+                        <div className="name__favorite-product">
+                          <h3>{favoriteProduct.nameProduct}</h3>
                         </div>
-                        <div className="main__buttons">
-                          <Fragment>
-                            <div className="flex222">
-                              {" "}
-                              {favorites
-                                ?.map((productFavorites) =>
-                                  productFavorites.product.toString()
-                                )
-                                .indexOf(favoriteProduct.product) === -1 ? (
-                                <button
-                                  onClick={() => {
-                                    addProductCardToMyFavorites(
-                                      favoriteProduct.product,
-                                      navigate
-                                    );
-                                  }}
-                                >
-                                  {" "}
-                                  <img src={XoImage} />{" "}
-                                </button>
-                              ) : (
-                                <button
-                                  onClick={() => {
-                                    removeProductCardToMyFavorites(
-                                      favoriteProduct.product,
-                                      navigate
-                                    );
-                                  }}
-                                >
-                                  {" "}
-                                  {/* <img src={XoImage} />{" "} */}
-                                  Убрать из Избранного
-                                </button>
-                              )}
-                            </div>
-                            <div>
-                              {" "}
-                              {}
-                              {basket
-                                ?.map((productBasket) =>
-                                  productBasket.product.toString()
-                                )
-                                .indexOf(favoriteProduct.product) === -1 ? (
-                                <button
-                                  onClick={() => {
-                                    // if (isAuthenticated) {
-                                    addProductCardToMyBasket(
-                                      favoriteProduct.product,
-                                      navigate
-                                    );
-                                    // } else {
-                                    //   setModalActive(true);
-                                    // }
-                                  }}
-                                >
-                                  <img src={PlusImage} />
-                                </button>
-                              ) : (
-                                <button
-                                  onClick={() => {
-                                    removeProductCardToMyBasket(
-                                      favoriteProduct.product,
-                                      navigate
-                                    );
-                                  }}
-                                >
-                                  {/* <img src={PlusImage} /> */}
-                                  Убрать Из Корзины
-                                </button>
-                              )}
-                            </div>
-                          </Fragment>
+                        <div className="price__product">
+                          <span>{favoriteProduct.price}руб.</span>
                         </div>
                       </div>
-                      {/* <div className="second-section__add-info"></div> */}
+                      <div className="main-buttons__favorite-product">
+                        {favorites
+                          ?.map((productFavorites) =>
+                            productFavorites.product.toString()
+                          )
+                          .indexOf(favoriteProduct.product) === -1 ? (
+                          <button
+                            className="button_favorite"
+                            onClick={() => {
+                              addProductCardToMyFavorites(
+                                favoriteProduct.product,
+                                navigate
+                              );
+                            }}
+                          >
+                            {" "}
+                            <img
+                              className="close__favorite"
+                              src={XoImage}
+                            />{" "}
+                          </button>
+                        ) : (
+                          <button
+                            className="button_favorite"
+                            onClick={() => {
+                              removeProductCardToMyFavorites(
+                                favoriteProduct.product,
+                                navigate
+                              );
+                            }}
+                          >
+                            {" "}
+                            <img
+                              className="close__favorite"
+                              src={XoImage}
+                            />{" "}
+                          </button>
+                        )}{" "}
+                        {basket
+                          ?.map((productBasket) =>
+                            productBasket.product.toString()
+                          )
+                          .indexOf(favoriteProduct.product) === -1 ? (
+                          <button
+                            className="close__button"
+                            onClick={() => {
+                              addProductCardToMyBasket(
+                                favoriteProduct.product,
+                                navigate
+                              );
+                            }}
+                          >
+                            <img src={PlusImage} />
+                          </button>
+                        ) : (
+                          <button
+                            className="close__button"
+                            onClick={() => {
+                              removeProductCardToMyBasket(
+                                favoriteProduct.product,
+                                navigate
+                              );
+                            }}
+                          >
+                            {/* <img src={PlusImage} /> */}
+                            {/* Убрать Из Корзины */}
+                            <AiFillCloseCircle />
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -50,7 +50,10 @@ function ProductsPage({
 
   return (
     <Fragment>
-      <section className="section-main main-section__products-page">
+      <section
+        className="section-main main-section__products-page"
+        id="page-wrap"
+      >
         <div className="first-section__products-page">
           <button
             className="category__button first__category"

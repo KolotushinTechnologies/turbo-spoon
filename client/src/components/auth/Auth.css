@@ -57,3 +57,22 @@
     flex-direction:column;
     align-items: center;
 }
+
+.modal__button-active {
+    display: none;
+}
+
+@media (max-width: 1250px) {
+    .authorizingBlock {
+        width: 100%;
+    }
+
+    .second-section__auth {
+        display: none;
+    }
+
+    .modal__button-active {
+        display: block !important;
+        margin: 0 !important;
+    }
+}

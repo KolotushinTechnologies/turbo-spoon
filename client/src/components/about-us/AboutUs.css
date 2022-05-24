@@ -36,3 +36,27 @@
 .img__about {
     margin: 0 30px;
 }
+
+@media (max-width: 1000px) {
+    .first-section__about-us {
+        flex-direction: column;
+    }
+
+    .description__about {
+        width: auto;
+    }
+
+    .img__about {
+        margin: 15px 30px;
+    }
+
+    .add__description {
+        width: auto;
+    }
+}
+
+@media (max-width: 770px) {
+    .main-section__about-us {
+        padding: 0 2rem;
+    }
+}

@@ -28,7 +28,7 @@ const DeliveryPage = () => {
   }, []);
 
   return (
-    <div className="main-delivery__section">
+    <div className="main-delivery__section" id="page-wrap">
       <div className="first-section__delivery">
         <div className="first-block__delivery block__delivery">
           <h1>Сколько стоит доставка?</h1>

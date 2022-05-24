@@ -54,7 +54,7 @@ function MainPage({
 
   return (
     <Fragment>
-      <section className="section-main">
+      <section className="section-main" id="page-wrap">
         <div className="whiteline"></div>
         <div className="whiteline"></div>
 

@@ -8,15 +8,15 @@
 }
 
 .profileImage {
-    width: 228px;
-    height: 228px;
+    width: 185px;
+    height: 185px;
     border-radius: 12px;
     object-fit: contain;
 }
 
 .donloadImgBg {
-    width: 228px;
-    height: 228px;
+    width: 185px;
+    height: 185px;
     position: absolute;
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.7);
@@ -29,16 +29,16 @@
 }
 
 .profileImageDiv {
-    width: 228px;
-    height: 228px;
+    width: 185px;
+    /* height: 185px; */
 }
 
 .profileImageDiv>input {
-    width: 228px;
-    height: 228px;
+    width: 185px;
+    height: 185px;
     opacity: 0;
     position: absolute;
-    margin-left: -228px;
+    /* margin-left: -228px; */
     z-index: 1000;
 }
 
@@ -146,106 +146,3 @@
     margin: 40px 0 0;
 }
 
-@media (max-width: 700px) {
-    input.profileNameText {
-        text-align: center;
-    }
-
-    .moreDetailsText {
-        display: initial;
-    }
-
-    .profileInfoContent {
-        margin-left: 12px;
-    }
-
-    .profileInfo {
-        margin: 76px 16px 32px;
-        padding: 0;
-        background: white;
-    }
-
-    .profileLogin {
-        margin: 0;
-        font-size: 14px;
-        line-height: 17px;
-    }
-
-    .profileImage,
-    .profileImageDiv,
-    .donloadImgBg,
-    .profileImageDiv>input {
-        width: 120px;
-        height: 120px;
-    }
-
-    .profileImageDiv>input {
-        margin-left: -120px;
-    }
-
-    .donloadImgBg {
-        font-size: 14px;
-        line-height: 20px;
-    }
-
-    .profileNameText {
-        font-size: 24px;
-        line-height: 24px;
-    }
-
-    .nameAndButtonsDiv {
-        align-items: flex-start;
-    }
-
-    .nameAndRoleDiv {
-        position: absolute;
-        top: 140px;
-        left: 16px;
-        right: 16px;
-        justify-content: center;
-    }
-
-    .editExitButtonsDiv {
-        position: absolute;
-        right: 15px;
-        margin-top: 100px;
-    }
-
-    .moreDetailsText {
-        position: absolute;
-        margin-top: 96px;
-    }
-
-    .profileRoleText {
-        display: none;
-    }
-
-    .editButton,
-    .exitButton {
-        font-size: 14px;
-        line-height: 16px;
-    }
-
-    .editButton {
-        margin-right: 8px;
-    }
-
-    .exitButton {
-        margin-right: 0;
-    }
-
-
-
-    .whatWeMakeEditButton {
-        right: 31px;
-        margin: 25px 0 0;
-    }
-
-    .profileInfo[active="true"] {
-        height: 377px;
-    }
-
-    .profileInfo[active="true"].displayEditProfile {
-        height: 443px;
-    }
-}

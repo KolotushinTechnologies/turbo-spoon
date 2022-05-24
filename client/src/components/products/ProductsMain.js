@@ -97,7 +97,7 @@ const ProductsMain = ({
                                 </button>
                               )}
                             </div>
-                            <div>
+                            <div className="basket__button">
                               {" "}
                               {}
                               {user?.basket

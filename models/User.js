@@ -37,6 +37,7 @@ const UserSchema = new Schema(
     ],
     orders: [
       {
+        fullNameUser: { type: String },
         nameOrder: { type: String, required: true },
         products: [{ type: Schema.Types.ObjectId, ref: "ProductCard" }],
         numberOrder: { type: String, required: true },

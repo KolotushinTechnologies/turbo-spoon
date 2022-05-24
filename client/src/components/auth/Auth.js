@@ -17,6 +17,21 @@ const Auth = ({ modalActive, setModalActive, loginStatus, setLoginStatus }) => {
         {loginStatus === false ? (
           <>
             <Registration closeModal={setModalActive} />
+            <button
+              className="submitButton modal_button modal__button-active"
+              onClick={() => setLoginStatus(true)}
+            >
+              <p>У вас уже есть аккаунт?</p>
+              <div>
+                Войдите
+                <img
+                  className="next__arrow"
+                  src={NextArrow}
+                  width={20}
+                  style={{ margin: "0 0 0 10px " }}
+                />
+              </div>
+            </button>
             <div className="second-section__auth">
               <div className="wrapper-section__auth">
                 <h2>
@@ -43,6 +58,18 @@ const Auth = ({ modalActive, setModalActive, loginStatus, setLoginStatus }) => {
         ) : (
           <>
             <Login closeModal={setModalActive} />
+            <button
+              className="submitButton auth__button modal__button-active"
+              onClick={() => setLoginStatus(false)}
+            >
+              Зарегистрируйтесь
+              <img
+                className="next__arrow"
+                src={NextArrow}
+                width={20}
+                style={{ margin: "0 0 0 10px " }}
+              />
+            </button>
             <div className="second-section__auth">
               <div className="wrapper-section__auth">
                 У вас нет аккаунта?

@@ -10,7 +10,7 @@ import Telegram from "../../img/Telegram.png";
 
 const AboutUsPage = () => {
   return (
-    <div className="main-section__about-us">
+    <div className="main-section__about-us" id="page-wrap">
       <div className="first-section__about-us">
         <div className="description__about">
           <p>

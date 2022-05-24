@@ -89,7 +89,9 @@ const createReviewForProductCard = async (req, res) => {
     const userId = req.user.id;
     const productCardId = req.params.product_card;
 
-    const user = await UserModel.findOne({ _id: userId });
+    const user = await UserModel.findOne({ _id: userId })
+      .populate("avatar basket favorites")
+      .select("-password");
     const productCard = await ProductCardModel.findOne({
       _id: productCardId
     });
@@ -110,6 +112,7 @@ const createReviewForProductCard = async (req, res) => {
 
     const newReview = {
       user: userId,
+      avatar: user.avatar ? user.avatar.url : null,
       name: user.fullName,
       text: text
     };

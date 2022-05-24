@@ -46,10 +46,10 @@ const MyProfile = ({
 
   return (
     <Fragment>
-      <div className="main-section__profile">
+      <div className="main-section__profile" id="page-wrap">
         <div className="first-section__profile">
           <Profile
-            // avatar={avatar && avatar}
+            avatar={user?.avatar && user?.avatar}
             fullName={user?.fullName && user?.fullName}
             login={user?.login && user?.login}
             address={user?.address && user?.address}

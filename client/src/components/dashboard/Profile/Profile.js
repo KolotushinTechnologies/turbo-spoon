@@ -8,7 +8,7 @@ import ProfileInfoSettings from "./ProfileInfo/ProfileInfoSettings";
 import "./Profile.css";
 
 const Profile = ({
-  //   avatar,
+  avatar,
   fullName,
   login,
   email,
@@ -49,7 +49,7 @@ const Profile = ({
 
   const myProfile = (
     <ProfileInfo
-      //   avatar={avatar}
+      avatar={avatar}
       fullName={fullName}
       openProfileSettings={openProfileSettings}
       displayEditProfile={displayEditProfile}

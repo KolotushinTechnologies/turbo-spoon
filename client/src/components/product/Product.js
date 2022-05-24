@@ -137,7 +137,7 @@ const Product = ({
         </div>
 
         <div className="second-section__main-section">
-          <div className="add__description">
+          <div className="add__description-product">
             <p>Состав: {product?.compound}</p>
 
             <p>Описание: {product?.description}</p>

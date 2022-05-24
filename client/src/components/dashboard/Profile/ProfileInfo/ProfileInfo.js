@@ -19,88 +19,91 @@ const ProfileInfo = ({
   phoneNumber
 }) => {
   return (
-    <div className="profileInfo" active={!mobileInfoHidden + ""}>
-      <div className="profileImageDiv">
-        {avatar ? (
-          <img className="profileImage" src={avatar?.url} alt="Нет Фото" />
-        ) : (
-          <img className="profileImage" src={DefaultAvatar} alt="Нет Фото" />
-        )}
-        <button onClick={logout} className="exitButton">
-          Выход
-        </button>
-      </div>
+    <>
+      <h1>
+        Ваш Профиль
+        <div className="editExitButtonsDiv">
+          <button onClick={openProfileSettings} className="editButton">
+            {displayEditProfile ? "Отмена" : "Редактировать"}
+          </button>
+        </div>
+      </h1>
+      <div className="profileInfo" active={!mobileInfoHidden + ""}>
+        <div className="profileImageDiv">
+          {avatar ? (
+            <img
+              className="profileImage"
+              src={avatar?.url}
+              alt={`Фото Пользователя ${avatar?.user}`}
+            />
+          ) : (
+            <img className="profileImage" src={DefaultAvatar} alt="Нет Фото" />
+          )}
+          <button onClick={logout} className="exitButton">
+            Выход
+          </button>
+        </div>
 
-      <div className="profileInfoContent">
-        <div className="nameAndButtonsDiv">
-          <div className="nameAndRoleDiv">
-            <span className="profileNameText">{fullName}</span>
+        <div className="profileInfoContent">
+          <div className="nameAndButtonsDiv">
+            <div className="nameAndRoleDiv">
+              <span className="profileNameText">{fullName}</span>
+            </div>
+            {/* <div className="editExitButtonsDiv">
+              <button onClick={openProfileSettings} className="editButton">
+                {displayEditProfile ? "Отмена" : "Редактировать"}
+              </button>
+            </div> */}
           </div>
-          <span
-            className="moreDetailsText"
-            active={!mobileInfoHidden + ""}
-            onClick={() => setMobileInfoHidden(!mobileInfoHidden)}
-            // isseller={iAmSeller + ""}
-          >
-            More details
-          </span>
-          <div className="editExitButtonsDiv">
-            <button onClick={openProfileSettings} className="editButton">
-              {displayEditProfile ? "Отмена" : "Редактировать"}
-            </button>
-            {/* <button onClick={logout} className="exitButton">
-              Выход
-            </button> */}
-          </div>
-        </div>
-        <span className="profileLogin">{login}</span>
-        <div className="profileMoreInfo">
-          <div className="profileMoreInfoDiv">
-            <div
-              className={`profMoreInfoBlock profMoreInfoBlock2 profMobileHiddenBlock2`}
-              // isseller={iAmSeller + ""}
-              // active={!mobileInfoHidden + ""}
-            >
-              {/* <span className="profInfoHeader">E-mail</span> */}
-              <span className="profInfoContent">{email}</span>
-              {/* <label className="profEmailHowLogin">
+          <span className="profileLogin">{login}</span>
+          <div className="profileMoreInfo">
+            <div className="profileMoreInfoDiv">
+              <div
+                className={`profMoreInfoBlock profMoreInfoBlock2 profMobileHiddenBlock2`}
+                // isseller={iAmSeller + ""}
+                // active={!mobileInfoHidden + ""}
+              >
+                {/* <span className="profInfoHeader">E-mail</span> */}
+                <span className="profInfoContent">{email}</span>
+                {/* <label className="profEmailHowLogin">
                 <input type="checkbox" />
                 <span>Use how login</span>
               </label> */}
+              </div>
             </div>
-          </div>
-          <div className="profileMoreInfoDiv">
-            <div
-              className={`profMoreInfoBlock profMoreInfoBlock2 profMobileHiddenBlock2`}
-              // isseller={iAmSeller + ""}
-              // active={!mobileInfoHidden + ""}
-            >
-              {/* <span className="profInfoHeader">Ваш адрес</span> */}
-              <span className="profInfoContent">{address}</span>
-              {/* <label className="profEmailHowLogin">
+            <div className="profileMoreInfoDiv">
+              <div
+                className={`profMoreInfoBlock profMoreInfoBlock2 profMobileHiddenBlock2`}
+                // isseller={iAmSeller + ""}
+                // active={!mobileInfoHidden + ""}
+              >
+                {/* <span className="profInfoHeader">Ваш адрес</span> */}
+                <span className="profInfoContent">{address}</span>
+                {/* <label className="profEmailHowLogin">
                 <input type="checkbox" />
                 <span>Use how login</span>
               </label> */}
+              </div>
             </div>
-          </div>
-          <div className="profileMoreInfoDiv">
+            <div className="profileMoreInfoDiv">
+              <div
+                className={`profMoreInfoBlock profMoreInfoBlock2 profMobileHiddenBlock1`}
+                // isseller={iAmSeller + ""}
+                // active={!mobileInfoHidden + ""}
+              >
+                {/* <span className="profInfoHeader">Номер телефона</span> */}
+                <span className="profInfoContent">{phoneNumber}</span>
+              </div>
+            </div>
             <div
-              className={`profMoreInfoBlock profMoreInfoBlock2 profMobileHiddenBlock1`}
+              className="profileMoreInfoDiv passwordContentDiv"
               // isseller={iAmSeller + ""}
               // active={!mobileInfoHidden + ""}
-            >
-              {/* <span className="profInfoHeader">Номер телефона</span> */}
-              <span className="profInfoContent">{phoneNumber}</span>
-            </div>
+            ></div>
           </div>
-          <div
-            className="profileMoreInfoDiv passwordContentDiv"
-            // isseller={iAmSeller + ""}
-            // active={!mobileInfoHidden + ""}
-          ></div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -72,7 +72,7 @@ const Basketpage = ({
   console.log(valueDelivery);
 
   return (
-    <section className="main-section__basket-page">
+    <section className="main-section__basket-page" id="page-wrap">
       {loading ? (
         <Spinner />
       ) : (
@@ -82,7 +82,7 @@ const Basketpage = ({
               <h1>Корзина({user?.basket?.length})</h1>
               <BasketProducts
                 events={events}
-                favorites={user.favorites}
+                favorites={user?.favorites}
                 basket={userBasket}
                 addProductCardToMyBasket={addProductCardToMyBasket}
                 addProductCardToMyFavorites={addProductCardToMyFavorites}

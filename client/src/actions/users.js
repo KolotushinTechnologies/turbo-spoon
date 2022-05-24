@@ -126,6 +126,37 @@ export const updateMyProfile = (formData, navigate) => async (dispatch) => {
   }
 };
 
+// Update User Porfile Avatar
+// @route    POST http://localhost/api/users/settings/upload-avatar
+// @desc     Settings profile Upload Avatar
+// @access   Private
+export const updateMyProfileAndUploadAvatar =
+  (data, navigate) => async (dispatch) => {
+    try {
+      const res = await api.put("/users/settings/upload-avatar", data);
+
+      dispatch({
+        type: UPDATE_MY_PROFILE,
+        payload: res.data
+      });
+
+      dispatch(getMyUserProfile());
+      dispatch(setAlert("Ваш Профиль Обновлен!", "success"));
+
+      navigate("/dashboard");
+    } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+      }
+
+      dispatch({
+        type: USER_ERROR
+      });
+    }
+  };
+
 // Get User Basket
 // @route    GET http://localhost:5000/api/users/my-basket
 // @desc     Get my basket

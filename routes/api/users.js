@@ -16,6 +16,7 @@ const {
   login,
   getMyProfile,
   mySettings,
+  myProfileSettingsUploadAvatar,
   getMyBasket,
   addProductCardToMyBasket,
   removeProductCardToMyBasket,
@@ -57,6 +58,16 @@ router.get("/", auth, getMyProfile);
 // @desc     User settings
 // @access   Private
 router.put("/settings", auth, mySettings);
+
+// @route    POST http://localhost/api/users/settings/upload-avatar
+// @desc     Settings profile Upload Avatar
+// @access   Private
+router.put(
+  "/settings/upload-avatar",
+  auth,
+  multer.single("file"),
+  myProfileSettingsUploadAvatar
+);
 
 // @route    GET http://localhost:5000/api/users/my-basket
 // @desc     Get my basket

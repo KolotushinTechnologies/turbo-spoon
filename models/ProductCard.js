@@ -10,7 +10,7 @@ const ProductCardSchema = new Schema(
     category: { type: String, required: true },
     reviews: [
       {
-        user: { type: Schema.Types.ObjectId },
+        user: { type: Schema.Types.ObjectId, ref: "User" },
         name: { type: String },
         text: { type: String, required: true },
         avatar: { type: String },

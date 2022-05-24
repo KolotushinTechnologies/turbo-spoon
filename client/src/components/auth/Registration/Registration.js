@@ -48,18 +48,19 @@ const Registration = ({
     address: "",
     password: "",
     password2: "",
-    avatar: null
+    file: null
   });
 
   // const [iAmSeller, setiAmSeller] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [avatarForm, setAvatarForm] = useState();
 
   const {
     login,
     fullName,
     email,
-    avatar,
+    file,
     phoneMask,
     phoneNumber,
     address,
@@ -70,7 +71,10 @@ const Registration = ({
   const navigate = useNavigate();
 
   const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
     /* setValue(e.target.name, e.target.value);
     trigger(e.target.name);
     touchedFields[e.target.name] = true; */
@@ -78,21 +82,24 @@ const Registration = ({
 
   const onSubmit = async (e) => {
     /* e.preventDefault(); */
-    const data = new FormData();
-    data.append("file", avatar);
-    // console.log("Ok");
-    registration(
-      {
-        login,
-        fullName,
-        email,
-        address,
-        phoneNumber,
-        password,
-        file: data
-      },
-      navigate
-    );
+
+    const formdata = new FormData();
+    formdata.append("file", avatarForm);
+    formdata.append("login", login);
+    formdata.append("password", password);
+    formdata.append("email", email);
+    formdata.append("phoneNumber", phoneNumber);
+    formdata.append("address", address);
+    formdata.append("fullName", fullName);
+
+    // return
+
+    console.log(avatarForm);
+    console.log(...formdata);
+
+    // avatar = file;
+
+    registration(formdata, navigate);
     closeModal(false);
   };
 
@@ -131,7 +138,7 @@ const Registration = ({
   return (
     <Fragment>
       <form
-        encType="multipart/form-data"
+        encType="multipart/form-file"
         className="authorizingBlock"
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -284,17 +291,17 @@ const Registration = ({
           </div>
           <div className="authField">
             <span className="authFieldName">Добавить фото</span>
-            <span className="authFieldSubName">Png/Jpeg & up to 10 MB</span>
-            <label className="regDownloadImageDiv">
-              <div className="regDownloadImageBG">Tap for download</div>
-              <input
-                className="regDownloadImageInput"
-                type="file"
-                name="avatar"
-                onChange={onChange}
-                accept="image/*"
-              ></input>
-            </label>
+            <input
+              // className="regDownloadImageInput"
+              type="file"
+              name="avatar"
+              onChange={(e) => {
+                e.preventDefault();
+                const fileAvatar = e.target.files[0];
+                setAvatarForm(fileAvatar);
+              }}
+              accept="image/*"
+            />
           </div>
         </div>
         <div className="submitButtonDiv">

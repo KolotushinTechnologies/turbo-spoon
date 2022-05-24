@@ -4,8 +4,12 @@ const AvatarModel = require("../models/Avatar");
 const ProductCardModel = require("../models/ProductCard");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const fs = require("fs");
 const config = require("config");
 const { validationResult } = require("express-validator");
+
+// Import Services
+const MailService = require("../utils/mailService");
 
 // @route    POST http://localhost:5000/api/users/registration
 // @desc     Register user
@@ -57,6 +61,8 @@ const registration = async (req, res) => {
     const newUser = await UserModel.findOne({ _id: newUserCustomer._id });
 
     const { file } = req;
+
+    console.log(file);
 
     const ext = file.originalname.split(".").pop();
 
@@ -220,6 +226,115 @@ const mySettings = async (req, res) => {
   }
 };
 
+// @route    POST http://localhost/api/users/settings/upload-avatar
+// @desc     Settings profile Upload Avatar
+// @access   Private
+const myProfileSettingsUploadAvatar = async (req, res) => {
+  try {
+    const avatar = await AvatarModel.findOne({ user: req.user.id });
+
+    if (!avatar) {
+      const { file } = req;
+
+      if (!file) {
+        return res.status(400).json({
+          statusCode: 400,
+          stringStatus: "Bad Request",
+          message: "Поле с файлом не найдено!"
+        });
+      }
+
+      const ext = file.originalname.split(".").pop();
+
+      const newAvatar = await AvatarModel.create({
+        filename: file.path.split("\\").pop(),
+        ext: ext,
+        url: `${req.protocol}://${
+          req.headers.host
+        }/files/images/avatars/${file.path.split("\\").pop()}`,
+        user: req.user.id
+      });
+
+      await UserModel.updateOne(
+        { _id: req.user.id },
+        {
+          $set: {
+            avatar: newAvatar._id
+          }
+        }
+      );
+
+      const updatedUser = await UserModel.findOne({ _id: req.user.id })
+        .populate("subscriptions frineds")
+        .select("-password");
+
+      return res.status(200).json(updatedUser);
+    }
+
+    fs.unlink(
+      `./public/files/images/avatars/${avatar.filename}`,
+      function (err) {
+        if (err) {
+          console.log(err);
+          return res.status(400).json({
+            statusCode: 400,
+            stringStatus: "Bad Request",
+            message: `Something went wrong! ${err}`
+          });
+        }
+      }
+    );
+    await AvatarModel.deleteOne({ user: req.user.id });
+
+    const { file } = req;
+
+    if (!file) {
+      return res.status(400).json({
+        statusCode: 400,
+        stringStatus: "Bad Request",
+        message: "Поле с файлом не найдено!"
+      });
+    }
+
+    const ext = file.originalname.split(".").pop();
+
+    const newAvatar = await AvatarModel.create({
+      filename: file.path.split("\\").pop(),
+      ext: ext,
+      url: `${req.protocol}://${
+        req.headers.host
+      }/files/images/avatars/${file.path.split("\\").pop()}`,
+      user: req.user.id
+    });
+
+    await UserModel.updateOne(
+      { _id: req.user.id },
+      {
+        $set: {
+          avatar: newAvatar._id
+        }
+      }
+    );
+
+    const updatedUser = await UserModel.findOne({ _id: req.user.id })
+      .populate("avatar basket favorites")
+      .select("-password");
+
+    return res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(500).json({
+      statusCode: "500",
+      stringStatus: "Error",
+      message: `Something went wrong! ${err}`
+    });
+    console.log({
+      statusCode: "500",
+      stringStatus: "Error",
+      message: `Something went wrong! ${err}`
+    });
+  }
+};
+
 // @route    GET http://localhost:5000/api/users/my-basket
 // @desc     Get my basket
 // @access   Private
@@ -250,7 +365,9 @@ const addProductCardToMyBasket = async (req, res) => {
     const userId = req.user.id;
     const productCardId = req.params.product_card;
 
-    const user = await UserModel.findOne({ _id: userId });
+    const user = await UserModel.findOne({ _id: userId })
+      .populate("avatar basket favorites")
+      .select("-password");
     const productCard = await ProductCardModel.findOne({
       _id: productCardId
     });
@@ -304,7 +421,9 @@ const removeProductCardToMyBasket = async (req, res) => {
     const userId = req.user.id;
     const productCardId = req.params.product_card;
 
-    const user = await UserModel.findOne({ _id: userId });
+    const user = await UserModel.findOne({ _id: userId })
+      .populate("avatar basket favorites")
+      .select("-password");
     const productCard = await ProductCardModel.findOne({
       _id: productCardId
     });
@@ -370,6 +489,7 @@ const createOrder = async (req, res) => {
     }
 
     const newOrder = {
+      fullNameUser: `${user.fullName}`,
       nameOrder: `Заказ от пользователя ${user.login}`,
       products: user.basket.map((basketProduct) => basketProduct.product),
       numberOrder: `Заказ#${user.orders.length + 1}`,
@@ -381,6 +501,15 @@ const createOrder = async (req, res) => {
 
     user.orders.unshift(newOrder);
     user.basket = [];
+
+    await MailService.sendOrderInfo(
+      user.email,
+      newOrder.fullNameUser,
+      newOrder.numberOrder,
+      newOrder.methodDelivery,
+      newOrder.price,
+      newOrder.countProducts
+    );
 
     await user.save();
 
@@ -421,7 +550,9 @@ const addProductCardToMyFavorites = async (req, res) => {
     const userId = req.user.id;
     const productCardId = req.params.product_card;
 
-    const user = await UserModel.findOne({ _id: userId });
+    const user = await UserModel.findOne({ _id: userId })
+      .populate("avatar basket favorites")
+      .select("-password");
     const productCard = await ProductCardModel.findOne({
       _id: productCardId
     });
@@ -474,7 +605,9 @@ const removeProductCardToMyFavorites = async (req, res) => {
     const userId = req.user.id;
     const productCardId = req.params.product_card;
 
-    const user = await UserModel.findOne({ _id: userId });
+    const user = await UserModel.findOne({ _id: userId })
+      .populate("avatar basket favorites")
+      .select("-password");
     const productCard = await ProductCardModel.findOne({
       _id: productCardId
     });
@@ -521,6 +654,7 @@ module.exports = {
   login,
   getMyProfile,
   mySettings,
+  myProfileSettingsUploadAvatar,
   getMyBasket,
   addProductCardToMyBasket,
   removeProductCardToMyBasket,

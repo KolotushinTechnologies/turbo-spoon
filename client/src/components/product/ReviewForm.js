@@ -31,14 +31,7 @@ const ReviewForm = ({ createReviewForProductCard, id }) => {
           className="btn btn-dark my-1 button__review"
           value="Оставить Отзыв!"
         />
-      ) : (
-        <input
-          disabled
-          type="submit"
-          className="btn btn-dark my-1 button__review"
-          value="Оставить Отзыв!"
-        />
-      )}
+      ) : null}
     </form>
   );
 };

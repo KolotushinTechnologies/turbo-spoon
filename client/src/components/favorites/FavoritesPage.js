@@ -33,7 +33,7 @@ const FavoritesPage = ({
   //   }, [getMyFavorites]);
 
   return (
-    <section className="main-section__favorites-page">
+    <section className="main-section__favorites-page" id="page-wrap">
       {loading ? (
         <Spinner />
       ) : (

@@ -3,7 +3,18 @@
     min-height: 800px;
     display: flex;
     justify-content: space-between;
-    margin: 0 70px;
+    margin: 0 100px;
+}
+
+.first-section__page-product {
+    display: flex;
+    width: 60%;
+}
+
+.second-section__page-product {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
 }
 
 .main-section__product, .first-section__main-section {
@@ -62,7 +73,11 @@
     color: #ffffff !important;
 }
 
-.add__description p {
+.add__description-product {
+
+}
+
+.add__description-product p {
     font-weight: 500;
     margin: 10px 0 0 0;
 }
@@ -71,6 +86,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .form-review__section h2 {
@@ -81,8 +97,7 @@
     display: flex;
     flex-direction: column;
     color: #ffffff !important;
-    width: 337px;
-    height: 337px;
+    width: 100%;
 } 
 
 .textarea__review {
@@ -100,6 +115,7 @@
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .button__review {
@@ -116,6 +132,7 @@
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .post__review {
@@ -132,4 +149,71 @@
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.name__review {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+@media (max-width: 1200px) {
+    .main-page__product {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .second-section__page-product, .first-section__page-product {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .main-section__product {
+        align-items: center;
+    }
+
+    .first-section__main-section {
+        flex-direction: column;
+    }
+
+    .second-section__main-section {
+        display: flex;
+        justify-content: center;
+    }
+
+    .add__description-product, .textarea__review, .button__review, .form__review {
+        width: 337px;
+    }
+}
+
+@media (max-width: 500px) {
+    .block__product {
+        width: 300px;
+        height: 300px;
+    }
+
+        .add__description-product,
+        .textarea__review,
+        .button__review,
+        .form__review {
+            width: 300px;
+        }
+}
+
+@media (max-width: 400px) {
+    .block__product {
+        width: 237px;
+        height: 237px;
+    }
+        .add__description-product,
+        .textarea__review,
+        .button__review,
+        .form__review {
+            width: 237px;
+        }
+    
+        .add__description p {
+
+        }
 }

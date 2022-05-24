@@ -1,5 +1,6 @@
 // Import Engine
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
+import { findDOMNode } from "react-dom";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
@@ -20,18 +21,32 @@ const Products = ({
   addProductCardToMyFavorites,
   removeProductCardToMyBasket,
   removeProductCardToMyFavorites,
+  getAllProductCards,
   navigate,
   loading,
   setModalActive
 }) => {
+  const [countSlides, setCountSlides] = useState(3);
+
+  useEffect(() => {
+    window.addEventListener("resize", function () {
+      if (this.window.innerWidth < 1200) {
+        setCountSlides(1);
+      } else {
+        setCountSlides(3);
+      }
+    });
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: countSlides,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 2000
   };
+
   return (
     <Fragment>
       {loading ? (
