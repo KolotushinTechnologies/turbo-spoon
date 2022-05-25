@@ -4,6 +4,7 @@ import React from "react";
 // Import Styles
 import "./ProfileInfo.css";
 import DefaultAvatar from "../../../../img/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
+import EditPage from "../../../../img/edit.png";
 
 const ProfileInfo = ({
   avatar,
@@ -20,11 +21,15 @@ const ProfileInfo = ({
 }) => {
   return (
     <>
-      <h1>
+      <h1 className="edit-section-profile">
         Ваш Профиль
         <div className="editExitButtonsDiv">
           <button onClick={openProfileSettings} className="editButton">
-            {displayEditProfile ? "Отмена" : "Редактировать"}
+            {displayEditProfile ? (
+              <img className="edit-page-button" src={EditPage} />
+            ) : (
+              <img className="edit-page-button" src={EditPage} />
+            )}
           </button>
         </div>
       </h1>

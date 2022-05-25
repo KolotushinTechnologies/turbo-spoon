@@ -40,10 +40,14 @@ const FavoritesProducts = ({
                         className="link-avatar__favorite-product"
                         to={`/product/${favoriteProduct.product}`}
                       >
-                        <img
-                          className="avatar__favorite-product"
-                          src={Balaklava}
-                        />
+                        {favoriteProduct?.product?.photo?.url ? (
+                          <img
+                            className="img__product"
+                            src={favoriteProduct?.product?.photo?.url}
+                          />
+                        ) : (
+                          <img className="img__product" src={Balaklava} />
+                        )}
                       </Link>
                     </div>
                     <div className="section-info__favorite-product">

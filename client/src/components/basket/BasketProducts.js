@@ -45,10 +45,14 @@ const BasketProducts = ({
                         className="link-avatar__product-basket"
                         to={`/product/${basketProduct.product}`}
                       >
-                        <img
-                          className="avatar__product-basket"
-                          src={Balaklava}
-                        />
+                        {basketProduct?.product?.photo?.url ? (
+                          <img
+                            className="img__product"
+                            src={basketProduct?.product?.photo?.url}
+                          />
+                        ) : (
+                          <img className="img__product" src={Balaklava} />
+                        )}
                       </Link>
                     </div>
                     <div className="section-info__product">

@@ -13,7 +13,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 
 const Menu = ({
   setMenuActive,
-  setMainHeader,
+  // setMainHeader,
   menuActive,
   modalActive,
   setModalActive,
@@ -38,7 +38,7 @@ const Menu = ({
               to="/products"
               className="menu__link link"
               onClick={() => {
-                setMainHeader(false);
+                // setMainHeader(false);
                 setMenuActive(false);
               }}
             >
@@ -50,7 +50,7 @@ const Menu = ({
               to="/about-us"
               className="menu__link link"
               onClick={() => {
-                setMainHeader(false);
+                // setMainHeader(false);
                 setMenuActive(false);
               }}
             >
@@ -62,7 +62,7 @@ const Menu = ({
               to="/delivery"
               className="menu__link link"
               onClick={() => {
-                setMainHeader(false);
+                // setMainHeader(false);
                 setMenuActive(false);
               }}
             >
@@ -75,7 +75,7 @@ const Menu = ({
                 className="menu__link link"
                 to="/dashboard"
                 onClick={() => {
-                  setMainHeader(false);
+                  // setMainHeader(false);
                   setMenuActive(false);
                 }}
               >
@@ -103,7 +103,7 @@ const Menu = ({
                 <Link
                   to="/favorites"
                   onClick={() => {
-                    setMainHeader(false);
+                    // setMainHeader(false);
                     setMenuActive(false);
                   }}
                 >
@@ -114,7 +114,7 @@ const Menu = ({
                 <Link
                   to="/my-basket"
                   onClick={() => {
-                    setMainHeader(false);
+                    // setMainHeader(false);
                     setMenuActive(false);
                   }}
                 >

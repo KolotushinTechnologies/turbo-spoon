@@ -177,3 +177,12 @@ input[type="file"][name="avatar"] {
     background-position: right 5px center !important;
     padding: 0 17px 0 0 !important;
 }
+
+.edit-section-profile {
+    display: flex;
+}
+
+.edit-page-button {
+    margin: 0 0 0 30px;
+    width: 25px;
+}

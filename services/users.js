@@ -162,6 +162,24 @@ const getMyProfile = async (req, res) => {
   try {
     const user = await UserModel.findById(req.user.id)
       .populate("avatar")
+      .populate({
+        path: "favorites",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
+      .populate({
+        path: "basket",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
       .select("-password");
     res.json(user);
   } catch (err) {
@@ -265,7 +283,7 @@ const myProfileSettingsUploadAvatar = async (req, res) => {
       );
 
       const updatedUser = await UserModel.findOne({ _id: req.user.id })
-        .populate("subscriptions frineds")
+        .populate("avatar basket favorites")
         .select("-password");
 
       return res.status(200).json(updatedUser);

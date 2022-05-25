@@ -11,6 +11,7 @@ import ZmeiImage from "../../img/1.png";
 import XoImage from "../../img/хо.png";
 import PlusImage from "../../img/+.png";
 import Balaklava from "../../img/shapka3.png";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 const Product = ({
   product,
@@ -32,7 +33,11 @@ const Product = ({
         <div className="first-section__main-section">
           <div className="block__product">
             <Link className="link-avatar" to={`/product/${product._id}`}>
-              <img className="img__product" src={Balaklava} />
+              {product?.photo?.url ? (
+                <img className="img__product" src={product?.photo?.url} />
+              ) : (
+                <img className="img__product" src={Balaklava} />
+              )}
             </Link>
           </div>
 
@@ -59,6 +64,7 @@ const Product = ({
                       )
                       .indexOf(product._id) === -1 ? (
                       <button
+                        className="button-main-product"
                         onClick={() => {
                           addProductCardToMyFavorites(product._id, navigate);
                         }}
@@ -68,17 +74,13 @@ const Product = ({
                       </button>
                     ) : (
                       <button
+                        className="button-main-product"
                         onClick={() => {
-                          // if (isAuthenticated) {
                           removeProductCardToMyFavorites(product._id, navigate);
-                          // } else {
-                          //   setModalActive(true);
-                          // }
                         }}
                       >
                         {" "}
-                        {/* <img src={XoImage} />{" "} */}
-                        Убрать из Избранного
+                        <img src={XoImage} /> {/* Убрать из Избранного */}
                       </button>
                     )}
                   </div>
@@ -89,28 +91,23 @@ const Product = ({
                       ?.map((productBasket) => productBasket.product.toString())
                       .indexOf(product._id) === -1 ? (
                       <button
+                        className="button-main-product"
                         onClick={() => {
-                          // if (isAuthenticated) {
                           addProductCardToMyBasket(product._id, navigate);
-                          // } else {
-                          //   setModalActive(true);
-                          // }
                         }}
                       >
                         <img src={PlusImage} />
                       </button>
                     ) : (
                       <button
+                        className="close-main-button"
                         onClick={() => {
-                          // if (isAuthenticated) {
                           removeProductCardToMyBasket(product._id, navigate);
-                          // } else {
-                          //   setModalActive(true);
-                          // }
                         }}
                       >
                         {/* <img src={PlusImage} /> */}
-                        Убрать Из Корзины
+                        {/* Убрать Из Корзины */}
+                        <AiFillCloseCircle />
                       </button>
                     )}
                   </div>
@@ -119,14 +116,20 @@ const Product = ({
                 <Fragment>
                   <div className="flex222">
                     {" "}
-                    <button onClick={() => setModalActive(true)}>
+                    <button
+                      className="button-main-product"
+                      onClick={() => setModalActive(true)}
+                    >
                       {" "}
                       <img src={XoImage} />{" "}
                     </button>
                   </div>
                   <div>
                     {" "}
-                    <button onClick={() => setModalActive(true)}>
+                    <button
+                      className="button-main-product"
+                      onClick={() => setModalActive(true)}
+                    >
                       <img src={PlusImage} />
                     </button>
                   </div>

@@ -29,6 +29,12 @@ const Products = ({
   const [countSlides, setCountSlides] = useState(3);
 
   useEffect(() => {
+    if (window.innerWidth < 1200) {
+      setCountSlides(1);
+    } else {
+      setCountSlides(3);
+    }
+
     window.addEventListener("resize", function () {
       if (this.window.innerWidth < 1200) {
         setCountSlides(1);
@@ -43,7 +49,7 @@ const Products = ({
     infinite: true,
     slidesToShow: countSlides,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 2000
   };
 
@@ -64,7 +70,14 @@ const Products = ({
                           className="link-avatar__product"
                           to={`/product/${item._id}`}
                         >
-                          <img className="avatar__product" src={Balaklava} />
+                          {item?.photo?.url ? (
+                            <img
+                              className="img__product"
+                              src={item?.photo?.url}
+                            />
+                          ) : (
+                            <img className="img__product" src={Balaklava} />
+                          )}
                         </Link>
                       </div>
                       <div className="second-section__product">
@@ -130,6 +143,7 @@ const Products = ({
                                     )
                                     .indexOf(item._id) === -1 ? (
                                     <button
+                                      className="button-main-page"
                                       onClick={() => {
                                         addProductCardToMyBasket(
                                           item._id,
@@ -167,14 +181,20 @@ const Products = ({
                               <Fragment>
                                 <div className="flex222">
                                   {" "}
-                                  <button onClick={() => setModalActive(true)}>
+                                  <button
+                                    className="button-main-page"
+                                    onClick={() => setModalActive(true)}
+                                  >
                                     {" "}
                                     <img src={XoImage} />{" "}
                                   </button>
                                 </div>
                                 <div>
                                   {" "}
-                                  <button onClick={() => setModalActive(true)}>
+                                  <button
+                                    className="button-main-page"
+                                    onClick={() => setModalActive(true)}
+                                  >
                                     <img src={PlusImage} />
                                   </button>
                                 </div>

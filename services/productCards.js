@@ -1,12 +1,13 @@
 const ProductCardModel = require("../models/ProductCard");
 const UserModel = require("../models/User");
+const AvatarModel = require("../models/Avatar");
 
 // @route    POST http://localhost:5000/api/product-cards/create?nameProduct=name&compound=compound&description=description&category=category
 // @desc     Create New Product Card
 // @access   Public
 const createNewProductCard = async (req, res) => {
   try {
-    const { nameProduct, compound, description, category } = req.query;
+    const { nameProduct, compound, description, category } = req.body;
 
     const newProductCard = await ProductCardModel.create({
       nameProduct: nameProduct,
@@ -16,7 +17,33 @@ const createNewProductCard = async (req, res) => {
       category: category
     });
 
-    return res.status(200).json(newProductCard);
+    const newProduct = await ProductCardModel.findOne({ _id: newProductCard });
+
+    const { file } = req;
+
+    console.log(file);
+
+    const ext = file.originalname.split(".").pop();
+
+    const newAvatar = await AvatarModel.create({
+      filename: file.path.split("\\").pop(),
+      ext: ext,
+      url: `${req.protocol}://${
+        req.headers.host
+      }/files/images/avatars/${file.path.split("\\").pop()}`,
+      product: newProduct._id
+    });
+
+    await ProductCardModel.updateOne(
+      { _id: newProduct._id },
+      {
+        $set: {
+          photo: newAvatar._id
+        }
+      }
+    );
+
+    return res.status(200).json(newProduct);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -30,11 +57,11 @@ const getAllProductCards = async (req, res) => {
   try {
     const categoryName = req.query.category;
 
-    const productCards = await ProductCardModel.find({});
+    const productCards = await ProductCardModel.find({}).populate("photo");
 
     const productCardsByCategoryName = await ProductCardModel.find({
       category: categoryName
-    });
+    }).populate("photo");
 
     if (!productCards) {
       return res.status(404).json({
@@ -66,7 +93,7 @@ const getProductCardById = async (req, res) => {
 
     const productCard = await ProductCardModel.findOne({
       _id: productCardId
-    });
+    }).populate("photo");
 
     if (!productCard) {
       return res.status(404).json({

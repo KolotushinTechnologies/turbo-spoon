@@ -16,7 +16,7 @@ import DefaultAvatar from "../../../../img/depositphotos_318221368-stock-illustr
 import Spinner from "../../../layout/Spinner";
 import ErrorMessage from "../../../auth/ErrorMessage";
 import ErrorInput from "../../../auth/ErrorInput";
-import { BsFillXCircleFill } from "react-icons/bs";
+import EditPage from "../../../../img/edit.png";
 
 const initialState = {
   login: "",
@@ -106,11 +106,15 @@ const ProfileInfoSettings = ({
 
   return (
     <Fragment>
-      <h1>
+      <h1 className="edit-section-profile">
         Ваш Профиль
         <div className="editExitButtonsDiv">
           <button onClick={openProfileSettings} className="editButton">
-            {displayEditProfile ? "Отмена" : "Редактировать"}
+            {displayEditProfile ? (
+              <img className="edit-page-button" src={EditPage} />
+            ) : (
+              <img className="edit-page-button" src={EditPage} />
+            )}
           </button>
           {/* <button onClick={logout} className="exitButton">
                 Выход
@@ -317,6 +321,28 @@ const ProfileInfoSettings = ({
                 error={errors.address}
               />
               {/* </div> */}
+
+              <ErrorInput
+                className="profInfoInput"
+                type="password"
+                placeholder="Пароль"
+                aria-invalid={!!errors.password + ""}
+                {...register("password", {
+                  required: "Empty field",
+                  maxLength: {
+                    value: 12,
+                    message: "Количество символов должно быть 12"
+                  },
+                  minLength: {
+                    value: 6,
+                    message: "Количество символов должно быть 6"
+                  },
+                  pattern: /^[a-z0-9]+(|\s([a-z0-9]+)|-([a-z0-9]+))$/i,
+                  onChange: onChange
+                })}
+                value={password}
+                error={errors.password}
+              />
               <button
                 type="submit"
                 className="submitButton profileChangeButton"
@@ -325,15 +351,15 @@ const ProfileInfoSettings = ({
                 Изменить настройки
               </button>
             </div>
-            <div
+            {/* <div
               className="profileMoreInfoDiv passwordContentDiv"
               // isseller={iAmSeller + ""}
               // active={!mobileInfoHidden + ""}
             >
               <span className="profInfoHeader">Пароль</span>
-              <input className="passwordText" readOnly value="* * * * * * *" />
+              <input className="passwordText" readOnly value={password} />
               <button className="profChangePassButton">Изменить пароль</button>
-            </div>
+            </div> */}
           </div>
         </form>
       </div>

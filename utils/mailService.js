@@ -24,7 +24,7 @@ class MailService {
     await this.transporter.sendMail({
       from: "vaseliskshop@gmail.com ",
       to,
-      subject: "Оформление Заказа в Интеренет-Магазине Vasilisk",
+      subject: "Оформление Заказа в Интернет-Магазине Vasilisk",
       text: "",
       html: `
         <div>

@@ -4,7 +4,7 @@ const ProductCardSchema = new Schema(
   {
     nameProduct: { type: String, required: true },
     price: Number,
-    photo: { type: String },
+    photo: { type: Schema.Types.ObjectId, ref: "Avatar" },
     compound: { type: String },
     description: { type: String },
     category: { type: String, required: true },

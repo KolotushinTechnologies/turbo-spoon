@@ -1,6 +1,6 @@
 // Import Engine
-import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../../actions/users";
@@ -16,36 +16,41 @@ import BasketImage from "../../../img/Basket.png";
 import "./Header.css";
 
 const Header = ({ userWork: { isAuthenticated, user }, logout }) => {
-  const [mainHeader, setMainHeader] = useState(false);
-  const [secondHeader, setSecondHeader] = useState(false);
+  // const [mainHeader, setMainHeader] = useState(false);
+  // const [secondHeader, setSecondHeader] = useState(false);
 
   const [menuActive, setMenuActive] = useState(false);
 
   const [modalActive, setModalActive] = useState(false);
   const [loginStatus, setLoginStatus] = useState(false);
 
+  const [pathname, pathnameSet] = useState("/");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    pathnameSet(window.location.pathname);
+    console.log(pathname);
+    console.log(window.location.pathname);
+    console.log(window.location);
+  }, [window.location.pathname]);
+
   return (
     <header
       className={
-        mainHeader
+        pathname == "/"
           ? "header"
-          : "header_no_cover" || secondHeader
+          : pathname == "/about-us"
           ? "header2"
           : "header_no_cover"
       }
     >
       <div className="cover1">
-        <div className={mainHeader ? "contr1200" : "contr1111"}>
+        <div className={pathname == "" ? "contr1200" : "contr1111"}>
           <nav className="nav">
             <span className="logo">
               {" "}
-              <Link
-                to="/"
-                onClick={() => {
-                  setMainHeader(true);
-                  setSecondHeader(false);
-                }}
-              >
+              <Link to="/" className="menu_link link">
                 <img src={MainLogo} width={"178"} height={"74"} />
               </Link>
             </span>
@@ -53,61 +58,29 @@ const Header = ({ userWork: { isAuthenticated, user }, logout }) => {
             <nav className="nav_menu_katalog">
               <ul className="menu_nav">
                 <li className="menu_item">
-                  <Link
-                    to="/products"
-                    className="menu_link link"
-                    onClick={() => {
-                      setMainHeader(false);
-                      setSecondHeader(false);
-                    }}
-                  >
+                  <Link to="/products" className="menu_link link">
                     Каталог
                   </Link>
                 </li>
                 <li className="menu_item">
-                  <Link
-                    to="/about-us"
-                    className="menu_link link"
-                    onClick={() => {
-                      setMainHeader(false);
-                      setSecondHeader(true);
-                    }}
-                  >
+                  <Link to="/about-us" className="menu_link link">
                     О нас
                   </Link>
                 </li>
                 <li className="menu_item">
-                  <Link
-                    to="/delivery"
-                    className="menu_link link"
-                    onClick={() => {
-                      setMainHeader(false);
-                      setSecondHeader(false);
-                    }}
-                  >
+                  <Link to="/delivery" className="menu_link link">
                     Доставка
                   </Link>
                 </li>
                 <li className="menu_item">
                   {isAuthenticated ? (
-                    <Link
-                      className="menu_link link"
-                      to="/dashboard"
-                      onClick={() => {
-                        setMainHeader(false);
-                        setSecondHeader(false);
-                      }}
-                    >
+                    <Link className="menu_link link" to="/dashboard">
                       Личный кабинет
                     </Link>
                   ) : (
                     <span
+                      onClick={() => setModalActive(true)}
                       className="menu_link link"
-                      onClick={() => {
-                        setMainHeader(false);
-                        setModalActive(true);
-                        setSecondHeader(false);
-                      }}
                     >
                       Личный кабинет
                     </span>
@@ -119,24 +92,12 @@ const Header = ({ userWork: { isAuthenticated, user }, logout }) => {
               {isAuthenticated ? (
                 <>
                   <li className="menu_item2">
-                    <Link
-                      to="/favorites"
-                      onClick={() => {
-                        setMainHeader(false);
-                        setSecondHeader(false);
-                      }}
-                    >
+                    <Link to="/favorites">
                       <img src={FavoriteImage} width={"40"} height={"40"} />
                     </Link>
                   </li>
                   <li className="menu_item2">
-                    <Link
-                      to="/my-basket"
-                      onClick={() => {
-                        setMainHeader(false);
-                        setSecondHeader(false);
-                      }}
-                    >
+                    <Link to="/my-basket">
                       <img src={BasketImage} width={"40"} height={"40"} />
                     </Link>
                   </li>
@@ -173,8 +134,8 @@ const Header = ({ userWork: { isAuthenticated, user }, logout }) => {
               <span />
             </div>
             <Menu
-              setSecondHeader={setSecondHeader}
-              setMainHeader={setMainHeader}
+              // setSecondHeader={setSecondHeader}
+              // setMainHeader={setMainHeader}
               menuActive={menuActive}
               modalActive={modalActive}
               setMenuActive={setMenuActive}
@@ -186,7 +147,7 @@ const Header = ({ userWork: { isAuthenticated, user }, logout }) => {
           </nav>
         </div>
       </div>
-      {mainHeader && <div className="whiteline"></div>}
+      {/* {mainHeader && <div className="whiteline"></div>} */}
     </header>
   );
 };

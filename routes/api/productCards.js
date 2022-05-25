@@ -4,6 +4,9 @@ const router = express.Router();
 // Import Middlewares
 const auth = require("../../middleware/auth");
 
+// Import Multer
+const multer = require("../../utils/multer");
+
 // Import Controllers
 const {
   createNewProductCard,
@@ -15,7 +18,7 @@ const {
 // @route    POST http://localhost:5000/api/product-cards/create?nameProduct=name&price=price&compound=compound&description=description&category=category
 // @desc     Create New Product Card
 // @access   Public
-router.post("/create", createNewProductCard);
+router.post("/create", multer.single("file"), createNewProductCard);
 
 // @route    GET http://localhost:5000/api/product-cards/all?category=categoryName
 // @desc     Get all product cards

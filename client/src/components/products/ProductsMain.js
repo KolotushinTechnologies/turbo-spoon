@@ -40,7 +40,11 @@ const ProductsMain = ({
                       className="link-avatar__product-main"
                       to={`/product/${item._id}`}
                     >
-                      <img className="avatar__product-main" src={Balaklava} />
+                      {item?.photo?.url ? (
+                        <img className="img__product" src={item?.photo?.url} />
+                      ) : (
+                        <img className="img__product" src={Balaklava} />
+                      )}
                     </Link>
                   </div>
                   <div className="second-section__product-main">
@@ -122,14 +126,10 @@ const ProductsMain = ({
                                 <button
                                   className="close__basket"
                                   onClick={() => {
-                                    // if (isAuthenticated) {
                                     removeProductCardToMyBasket(
                                       item._id,
                                       navigate
                                     );
-                                    // } else {
-                                    //   setModalActive(true);
-                                    // }
                                   }}
                                 >
                                   {/* <img src={PlusImage} /> */}
@@ -143,14 +143,20 @@ const ProductsMain = ({
                           <Fragment>
                             <div className="flex222">
                               {" "}
-                              <button onClick={() => setModalActive(true)}>
+                              <button
+                                className="button-main-page"
+                                onClick={() => setModalActive(true)}
+                              >
                                 {" "}
                                 <img src={XoImage} />{" "}
                               </button>
                             </div>
                             <div>
                               {" "}
-                              <button onClick={() => setModalActive(true)}>
+                              <button
+                                className="button-main-page"
+                                onClick={() => setModalActive(true)}
+                              >
                                 <img src={PlusImage} />
                               </button>
                             </div>

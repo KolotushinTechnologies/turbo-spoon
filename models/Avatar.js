@@ -5,7 +5,8 @@ const AvatarSchema = new Schema(
     filename: { type: String },
     ext: { type: String },
     url: { type: String },
-    user: { type: Schema.Types.ObjectId, ref: "User", required: true }
+    product: { type: Schema.Types.ObjectId, ref: "ProductCard" },
+    user: { type: Schema.Types.ObjectId, ref: "User" }
   },
   { timestamps: true }
 );
