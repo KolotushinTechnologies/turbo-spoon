@@ -328,16 +328,6 @@ const ProfileInfoSettings = ({
                 placeholder="Пароль"
                 aria-invalid={!!errors.password + ""}
                 {...register("password", {
-                  required: "Empty field",
-                  maxLength: {
-                    value: 12,
-                    message: "Количество символов должно быть 12"
-                  },
-                  minLength: {
-                    value: 6,
-                    message: "Количество символов должно быть 6"
-                  },
-                  pattern: /^[a-z0-9]+(|\s([a-z0-9]+)|-([a-z0-9]+))$/i,
                   onChange: onChange
                 })}
                 value={password}

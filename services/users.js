@@ -62,27 +62,46 @@ const registration = async (req, res) => {
 
     const { file } = req;
 
-    console.log(file);
+    if (file) {
+      console.log(file);
 
-    const ext = file.originalname.split(".").pop();
+      const ext = file.originalname.split(".").pop();
 
-    const newAvatar = await AvatarModel.create({
-      filename: file.path.split("\\").pop(),
-      ext: ext,
-      url: `${req.protocol}://${
-        req.headers.host
-      }/files/images/avatars/${file.path.split("\\").pop()}`,
-      user: newUser._id
-    });
+      const newAvatar = await AvatarModel.create({
+        filename: file.path.split("\\").pop(),
+        ext: ext,
+        url: `${req.protocol}://${
+          req.headers.host
+        }/files/images/avatars/${file.path.split("\\").pop()}`,
+        user: newUser._id
+      });
 
-    await UserModel.updateOne(
-      { _id: newUser._id },
-      {
-        $set: {
-          avatar: newAvatar._id
+      await UserModel.updateOne(
+        { _id: newUser._id },
+        {
+          $set: {
+            avatar: newAvatar._id
+          }
         }
-      }
-    );
+      );
+
+      const payloadCustomer = {
+        user: {
+          id: newUser.id
+        }
+      };
+
+      // Возвращаем успешный статус с ответом от сервера и данными о пользователе
+      jwt.sign(
+        payloadCustomer,
+        config.get("jwtSecret"),
+        { expiresIn: "5 days" },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
+    }
 
     const payloadCustomer = {
       user: {
