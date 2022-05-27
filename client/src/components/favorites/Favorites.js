@@ -31,14 +31,14 @@ const FavoritesProducts = ({
               return (
                 // <div key={favoriteProduct.product} className="slider__item">
                 <div
-                  key={favoriteProduct.product}
+                  key={favoriteProduct.product._id}
                   className="main-section__favorite-product"
                 >
                   <div className="first-section__favorite-product">
                     <div className="section__avatar-product">
                       <Link
                         className="link-avatar__favorite-product"
-                        to={`/product/${favoriteProduct.product}`}
+                        to={`/product/${favoriteProduct.product._id}`}
                       >
                         {favoriteProduct?.product?.photo?.url ? (
                           <img
@@ -62,14 +62,14 @@ const FavoritesProducts = ({
                       <div className="main-buttons__favorite-product">
                         {favorites
                           ?.map((productFavorites) =>
-                            productFavorites.product.toString()
+                            productFavorites.product._id.toString()
                           )
-                          .indexOf(favoriteProduct.product) === -1 ? (
+                          .indexOf(favoriteProduct.product._id) === -1 ? (
                           <button
                             className="button_favorite"
                             onClick={() => {
                               addProductCardToMyFavorites(
-                                favoriteProduct.product,
+                                favoriteProduct.product._id,
                                 navigate
                               );
                             }}
@@ -85,7 +85,7 @@ const FavoritesProducts = ({
                             className="button_favorite"
                             onClick={() => {
                               removeProductCardToMyFavorites(
-                                favoriteProduct.product,
+                                favoriteProduct.product._id,
                                 navigate
                               );
                             }}
@@ -99,14 +99,14 @@ const FavoritesProducts = ({
                         )}{" "}
                         {basket
                           ?.map((productBasket) =>
-                            productBasket.product.toString()
+                            productBasket.product._id.toString()
                           )
-                          .indexOf(favoriteProduct.product) === -1 ? (
+                          .indexOf(favoriteProduct.product._id) === -1 ? (
                           <button
                             className="close__button"
                             onClick={() => {
                               addProductCardToMyBasket(
-                                favoriteProduct.product,
+                                favoriteProduct.product._id,
                                 navigate
                               );
                             }}
@@ -118,7 +118,7 @@ const FavoritesProducts = ({
                             className="close__button"
                             onClick={() => {
                               removeProductCardToMyBasket(
-                                favoriteProduct.product,
+                                favoriteProduct.product._id,
                                 navigate
                               );
                             }}

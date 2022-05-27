@@ -71,6 +71,8 @@ const Basketpage = ({
 
   console.log(valueDelivery);
 
+  console.log(userBasket[0]);
+
   return (
     <section className="main-section__basket-page" id="page-wrap">
       {loading ? (

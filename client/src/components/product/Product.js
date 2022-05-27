@@ -27,6 +27,8 @@ const Product = ({
   loginStatus,
   setLoginStatus
 }) => {
+  console.log(product);
+
   return (
     <Fragment>
       <div className="main-section__product">
@@ -60,7 +62,7 @@ const Product = ({
                     {" "}
                     {user?.favorites
                       ?.map((productFavorites) =>
-                        productFavorites.product.toString()
+                        productFavorites.product._id.toString()
                       )
                       .indexOf(product._id) === -1 ? (
                       <button
@@ -88,7 +90,9 @@ const Product = ({
                     {" "}
                     {}
                     {user?.basket
-                      ?.map((productBasket) => productBasket.product.toString())
+                      ?.map((productBasket) =>
+                        productBasket.product._id.toString()
+                      )
                       .indexOf(product._id) === -1 ? (
                       <button
                         className="button-main-product"

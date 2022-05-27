@@ -402,12 +402,32 @@ const addProductCardToMyBasket = async (req, res) => {
     const userId = req.user.id;
     const productCardId = req.params.product_card;
 
-    const user = await UserModel.findOne({ _id: userId })
-      .populate("avatar basket favorites")
+    const user = await UserModel.findById({ _id: userId })
+      .populate("avatar")
+      .populate({
+        path: "favorites",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
+      .populate({
+        path: "basket",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
       .select("-password");
     const productCard = await ProductCardModel.findOne({
       _id: productCardId
     });
+
+    console.log(user);
 
     if (!user) {
       return res.status(404).json({
@@ -424,7 +444,7 @@ const addProductCardToMyBasket = async (req, res) => {
     if (
       user.basket.some(
         (basketProduct) =>
-          basketProduct.product.toString() === productCard._id.toString()
+          basketProduct.product._id.toString() === productCard._id.toString()
       )
     ) {
       return res.status(400).json({
@@ -443,7 +463,29 @@ const addProductCardToMyBasket = async (req, res) => {
 
     await user.save();
 
-    return res.status(200).json(user);
+    const updateduser = await UserModel.findOne({ _id: user._id })
+      .populate("avatar")
+      .populate({
+        path: "favorites",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
+      .populate({
+        path: "basket",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
+      .select("-password");
+
+    return res.status(200).json(updateduser);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -459,7 +501,25 @@ const removeProductCardToMyBasket = async (req, res) => {
     const productCardId = req.params.product_card;
 
     const user = await UserModel.findOne({ _id: userId })
-      .populate("avatar basket favorites")
+      .populate("avatar")
+      .populate({
+        path: "favorites",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
+      .populate({
+        path: "basket",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
       .select("-password");
     const productCard = await ProductCardModel.findOne({
       _id: productCardId
@@ -480,7 +540,7 @@ const removeProductCardToMyBasket = async (req, res) => {
     if (
       !user.basket.some(
         (basketProduct) =>
-          basketProduct.product.toString() === productCard._id.toString()
+          basketProduct.product._id.toString() === productCard._id.toString()
       )
     ) {
       return res.status(404).json({
@@ -490,7 +550,7 @@ const removeProductCardToMyBasket = async (req, res) => {
 
     user.basket = user.basket.filter(
       (basketProduct) =>
-        basketProduct.product.toString() !== productCard._id.toString()
+        basketProduct.product._id.toString() !== productCard._id.toString()
     );
 
     user.save();
@@ -509,7 +569,27 @@ const createOrder = async (req, res) => {
   try {
     const userId = req.user.id;
 
-    const user = await UserModel.findOne({ _id: userId });
+    const user = await UserModel.findOne({ _id: userId })
+      .populate("avatar")
+      .populate({
+        path: "favorites",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
+      .populate({
+        path: "basket",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
+      .select("-password");
 
     const { price, methodDelivery } = req.body;
 
@@ -588,7 +668,25 @@ const addProductCardToMyFavorites = async (req, res) => {
     const productCardId = req.params.product_card;
 
     const user = await UserModel.findOne({ _id: userId })
-      .populate("avatar basket favorites")
+      .populate("avatar")
+      .populate({
+        path: "favorites",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
+      .populate({
+        path: "basket",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
       .select("-password");
     const productCard = await ProductCardModel.findOne({
       _id: productCardId
@@ -609,7 +707,7 @@ const addProductCardToMyFavorites = async (req, res) => {
     if (
       user.favorites.some(
         (favoriteProduct) =>
-          favoriteProduct.product.toString() === productCard._id.toString()
+          favoriteProduct.product._id.toString() === productCard._id.toString()
       )
     ) {
       return res.status(400).json({
@@ -627,7 +725,29 @@ const addProductCardToMyFavorites = async (req, res) => {
 
     await user.save();
 
-    return res.status(200).json(user);
+    const updateduser = await UserModel.findOne({ _id: user._id })
+      .populate("avatar")
+      .populate({
+        path: "favorites",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
+      .populate({
+        path: "basket",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
+      .select("-password");
+
+    return res.status(200).json(updateduser);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -643,7 +763,25 @@ const removeProductCardToMyFavorites = async (req, res) => {
     const productCardId = req.params.product_card;
 
     const user = await UserModel.findOne({ _id: userId })
-      .populate("avatar basket favorites")
+      .populate("avatar")
+      .populate({
+        path: "favorites",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
+      .populate({
+        path: "basket",
+        populate: {
+          path: "product",
+          populate: {
+            path: "photo"
+          }
+        }
+      })
       .select("-password");
     const productCard = await ProductCardModel.findOne({
       _id: productCardId
@@ -661,10 +799,17 @@ const removeProductCardToMyFavorites = async (req, res) => {
       });
     }
 
+    // console.log(
+    //   user.favorites.some(
+    //     (favoriteProduct) =>
+    //       favoriteProduct.product._id.toString() === productCard._id.toString()
+    //   )
+    // );
+
     if (
       !user.favorites.some(
         (favoriteProduct) =>
-          favoriteProduct.product.toString() === productCard._id.toString()
+          favoriteProduct.product._id.toString() === productCard._id.toString()
       )
     ) {
       return res.status(404).json({
@@ -674,7 +819,7 @@ const removeProductCardToMyFavorites = async (req, res) => {
 
     user.favorites = user.favorites.filter(
       (favoriteProduct) =>
-        favoriteProduct.product.toString() !== productCard._id.toString()
+        favoriteProduct.product._id.toString() !== productCard._id.toString()
     );
 
     user.save();

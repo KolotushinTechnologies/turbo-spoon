@@ -97,7 +97,7 @@ const Products = ({
                                   {" "}
                                   {user?.favorites
                                     ?.map((productFavorites) =>
-                                      productFavorites.product.toString()
+                                      productFavorites.product._id.toString()
                                     )
                                     .indexOf(item._id) === -1 ? (
                                     <button
@@ -139,7 +139,7 @@ const Products = ({
                                   {}
                                   {user?.basket
                                     ?.map((productBasket) =>
-                                      productBasket.product.toString()
+                                      productBasket.product._id.toString()
                                     )
                                     .indexOf(item._id) === -1 ? (
                                     <button

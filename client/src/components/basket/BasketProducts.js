@@ -26,6 +26,7 @@ const BasketProducts = ({
   navigate,
   loading
 }) => {
+  console.log(basket);
   return (
     <Fragment>
       {loading ? (
@@ -34,16 +35,17 @@ const BasketProducts = ({
         <Fragment>
           {basket.length > 0 ? (
             basket?.map((basketProduct) => {
+              console.log(basketProduct.product);
               return (
                 <div
-                  key={basketProduct.product}
+                  key={basketProduct.product._id}
                   className="main-basket__section"
                 >
                   <div className="first-section__product-basket">
                     <div className="section__avatar-product">
                       <Link
                         className="link-avatar__product-basket"
-                        to={`/product/${basketProduct.product}`}
+                        to={`/product/${basketProduct?.product?._id}`}
                       >
                         {basketProduct?.product?.photo?.url ? (
                           <img
@@ -64,13 +66,14 @@ const BasketProducts = ({
                       <div className="main-buttons__product-basket">
                         {favorites
                           ?.map((productFavorites) =>
-                            productFavorites.product.toString()
+                            productFavorites?.product._id.toString()
                           )
-                          .indexOf(basketProduct.product) === -1 ? (
+                          .indexOf(basketProduct?.product?._id) === -1 ? (
                           <button
+                            // className="button__favorites"
                             onClick={() => {
                               addProductCardToMyFavorites(
-                                basketProduct.product,
+                                basketProduct?.product?._id,
                                 navigate
                               );
                             }}
@@ -83,9 +86,10 @@ const BasketProducts = ({
                           </button>
                         ) : (
                           <button
+                            // className="button__favorites"
                             onClick={() => {
                               removeProductCardToMyFavorites(
-                                basketProduct.product,
+                                basketProduct?.product?._id,
                                 navigate
                               );
                             }}
@@ -99,13 +103,13 @@ const BasketProducts = ({
                         )}{" "}
                         {basket
                           ?.map((productBasket) =>
-                            productBasket.product.toString()
+                            productBasket?.product._id.toString()
                           )
-                          .indexOf(basketProduct.product) === -1 ? (
+                          .indexOf(basketProduct?.product?._id) === -1 ? (
                           <button
                             onClick={() => {
                               addProductCardToMyBasket(
-                                basketProduct.product,
+                                basketProduct?.product?._id,
                                 navigate
                               );
                             }}
@@ -117,7 +121,7 @@ const BasketProducts = ({
                             className="close__button"
                             onClick={() => {
                               removeProductCardToMyBasket(
-                                basketProduct.product,
+                                basketProduct?.product?._id,
                                 navigate
                               );
                             }}
@@ -134,22 +138,26 @@ const BasketProducts = ({
                     <div className="add__products">
                       <button
                         className="button__product-events"
-                        onClick={() => events.increment(basketProduct)}
+                        onClick={() =>
+                          events.increment(basketProduct && basketProduct)
+                        }
                       >
                         <AiOutlineCaretLeft />
                       </button>
                       <span className="section-product__count-products">
-                        {basketProduct.countProducts}{" "}
+                        {basketProduct?.countProducts}{" "}
                       </span>
                       <button
                         className="button__product-events"
-                        onClick={() => events.decrement(basketProduct)}
+                        onClick={() =>
+                          events.decrement(basketProduct && basketProduct)
+                        }
                       >
                         <AiOutlineCaretRight />
                       </button>
                     </div>
                     <div className="price__product-basket">
-                      <span>{basketProduct.price}руб.</span>
+                      <span>{basketProduct?.price}руб.</span>
                     </div>
                   </div>
                 </div>

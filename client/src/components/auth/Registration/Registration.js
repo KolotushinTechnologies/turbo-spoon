@@ -47,8 +47,7 @@ const Registration = ({
     phoneNumber: "",
     address: "",
     password: "",
-    password2: "",
-    file: null
+    password2: ""
   });
 
   // const [iAmSeller, setiAmSeller] = useState(false);
@@ -60,7 +59,6 @@ const Registration = ({
     login,
     fullName,
     email,
-    file,
     phoneMask,
     phoneNumber,
     address,
@@ -92,12 +90,8 @@ const Registration = ({
     formdata.append("address", address);
     formdata.append("fullName", fullName);
 
-    // return
-
     console.log(avatarForm);
     console.log(...formdata);
-
-    // avatar = file;
 
     registration(formdata, navigate);
     closeModal(false);
