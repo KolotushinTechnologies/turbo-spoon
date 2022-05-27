@@ -1,8 +1,9 @@
 .main-section__basket-page {
     display: flex;
+    flex: 1 1 auto;
     max-width: 100%;
     padding: 0 6rem;
-    height: 800px;
+    /* height: 800px; */
 }
 
 .first-section__basket-page {

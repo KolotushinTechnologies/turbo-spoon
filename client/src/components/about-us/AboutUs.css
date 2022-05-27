@@ -1,6 +1,7 @@
 .main-section__about-us {
     display: flex;
     flex-direction: column;
+    flex: 1 1 auto;
     color: #ffffff;
     padding: 2rem 6rem;
 }
